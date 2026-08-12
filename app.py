@@ -8,14 +8,23 @@ from flask import (
     session
 )
 
+from flask_wtf.csrf import CSRFProtect
+
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
+from werkzeug.security import check_password_hash
+
 import sqlite3
 import os
+import re
+
 from functools import wraps
 from dotenv import load_dotenv
 
 
 # =========================
-# LOAD ENVIRONMENT VARIABLES
+# LOAD ENVIRONMENT
 # =========================
 
 load_dotenv()
@@ -27,43 +36,105 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.secret_key = os.getenv(
-    "SECRET_KEY",
-    "development-secret-key"
+
+# =========================
+# ENVIRONMENT VARIABLES
+# =========================
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD_HASH = os.getenv("ADMIN_PASSWORD_HASH")
+
+
+if not SECRET_KEY:
+    raise RuntimeError(
+        "SECRET_KEY is missing from the .env file."
+    )
+
+if not ADMIN_USERNAME:
+    raise RuntimeError(
+        "ADMIN_USERNAME is missing from the .env file."
+    )
+
+if not ADMIN_PASSWORD_HASH:
+    raise RuntimeError(
+        "ADMIN_PASSWORD_HASH is missing from the .env file."
+    )
+
+
+app.secret_key = SECRET_KEY
+
+
+# =========================
+# CSRF PROTECTION
+# =========================
+
+csrf = CSRFProtect(app)
+
+
+# =========================
+# RATE LIMITING
+# =========================
+
+RATE_LIMIT_STORAGE = os.getenv(
+    "RATELIMIT_STORAGE_URI",
+    "memory://"
+)
+
+
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    storage_uri=RATE_LIMIT_STORAGE
 )
 
 
 # =========================
-# ADMIN DETAILS
+# SESSION SECURITY
 # =========================
 
-ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+# Keep False while using localhost.
+# Change to True after HTTPS deployment.
+app.config["SESSION_COOKIE_SECURE"] = False
 
 
 # =========================
 # DATABASE
 # =========================
 
-DATABASE = "portfolio.db"
+DATABASE = os.path.join(
+    app.root_path,
+    "portfolio.db"
+)
 
 
 def get_database_connection():
 
-    connection = sqlite3.connect(DATABASE)
+    connection = sqlite3.connect(
+        DATABASE
+    )
 
-    connection.row_factory = sqlite3.Row
+    connection.row_factory = (
+        sqlite3.Row
+    )
 
     return connection
 
 
 def create_database():
 
-    connection = get_database_connection()
+    connection = (
+        get_database_connection()
+    )
 
     cursor = connection.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         CREATE TABLE IF NOT EXISTS messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
@@ -71,7 +142,8 @@ def create_database():
             subject TEXT NOT NULL,
             message TEXT NOT NULL
         )
-    """)
+        """
+    )
 
     connection.commit()
 
@@ -82,21 +154,54 @@ create_database()
 
 
 # =========================
-# ADMIN LOGIN REQUIRED
+# EMAIL VALIDATION
+# =========================
+
+def is_valid_email(email):
+
+    pattern = (
+        r"^[A-Za-z0-9._%+-]+"
+        r"@[A-Za-z0-9.-]+"
+        r"\.[A-Za-z]{2,}$"
+    )
+
+    return re.match(
+        pattern,
+        email
+    ) is not None
+
+
+# =========================
+# ADMIN LOGIN DECORATOR
 # =========================
 
 def login_required(function):
 
     @wraps(function)
-    def decorated_function(*args, **kwargs):
+    def decorated_function(
+        *args,
+        **kwargs
+    ):
 
-        if not session.get("admin_logged_in"):
+        if not session.get(
+            "admin_logged_in"
+        ):
 
-            flash("Please login to access the admin dashboard.")
+            flash(
+                "Please login to access "
+                "the admin dashboard."
+            )
 
-            return redirect(url_for("admin_login"))
+            return redirect(
+                url_for(
+                    "admin_login"
+                )
+            )
 
-        return function(*args, **kwargs)
+        return function(
+            *args,
+            **kwargs
+        )
 
     return decorated_function
 
@@ -108,40 +213,149 @@ def login_required(function):
 @app.route("/")
 def home():
 
-    return render_template("index.html")
+    return render_template(
+        "index.html"
+    )
 
 
 # =========================
 # CONTACT FORM
 # =========================
 
-@app.route("/contact", methods=["POST"])
+@app.route(
+    "/contact",
+    methods=["POST"]
+)
+@limiter.limit(
+    "5 per minute; 20 per hour"
+)
 def contact():
 
-    name = request.form.get("name", "").strip()
+    name = request.form.get(
+        "name",
+        ""
+    ).strip()
 
-    email = request.form.get("email", "").strip()
+    email = request.form.get(
+        "email",
+        ""
+    ).strip()
 
-    subject = request.form.get("subject", "").strip()
+    subject = request.form.get(
+        "subject",
+        ""
+    ).strip()
 
-    message = request.form.get("message", "").strip()
+    message = request.form.get(
+        "message",
+        ""
+    ).strip()
 
 
-    if not name or not email or not subject or not message:
+    # =========================
+    # EMPTY FIELD VALIDATION
+    # =========================
 
-        flash("Please fill in all fields.")
+    if (
+        not name
+        or not email
+        or not subject
+        or not message
+    ):
+
+        flash(
+            "Please fill in all fields."
+        )
 
         return redirect(
-            url_for("home") + "#contact"
+            url_for("home")
+            + "#contact"
         )
 
 
-    connection = get_database_connection()
+    # =========================
+    # LENGTH VALIDATION
+    # =========================
+
+    if len(name) > 100:
+
+        flash(
+            "Name is too long."
+        )
+
+        return redirect(
+            url_for("home")
+            + "#contact"
+        )
+
+
+    if len(email) > 150:
+
+        flash(
+            "Email address is too long."
+        )
+
+        return redirect(
+            url_for("home")
+            + "#contact"
+        )
+
+
+    if len(subject) > 150:
+
+        flash(
+            "Subject is too long."
+        )
+
+        return redirect(
+            url_for("home")
+            + "#contact"
+        )
+
+
+    if len(message) > 2000:
+
+        flash(
+            "Message must be under "
+            "2000 characters."
+        )
+
+        return redirect(
+            url_for("home")
+            + "#contact"
+        )
+
+
+    # =========================
+    # EMAIL VALIDATION
+    # =========================
+
+    if not is_valid_email(email):
+
+        flash(
+            "Please enter a valid "
+            "email address."
+        )
+
+        return redirect(
+            url_for("home")
+            + "#contact"
+        )
+
+
+    # =========================
+    # SAVE MESSAGE
+    # =========================
+
+    connection = (
+        get_database_connection()
+    )
 
     cursor = connection.cursor()
 
 
-    cursor.execute("""
+    cursor.execute(
+        """
         INSERT INTO messages (
             name,
             email,
@@ -149,12 +363,14 @@ def contact():
             message
         )
         VALUES (?, ?, ?, ?)
-    """, (
-        name,
-        email,
-        subject,
-        message
-    ))
+        """,
+        (
+            name,
+            email,
+            subject,
+            message
+        )
+    )
 
 
     connection.commit()
@@ -163,12 +379,14 @@ def contact():
 
 
     flash(
-        "Your message has been sent successfully!"
+        "Your message has been "
+        "sent successfully!"
     )
 
 
     return redirect(
-        url_for("home") + "#contact"
+        url_for("home")
+        + "#contact"
     )
 
 
@@ -180,12 +398,20 @@ def contact():
     "/admin/login",
     methods=["GET", "POST"]
 )
+@limiter.limit(
+    "5 per minute",
+    methods=["POST"]
+)
 def admin_login():
 
-    if session.get("admin_logged_in"):
+    if session.get(
+        "admin_logged_in"
+    ):
 
         return redirect(
-            url_for("admin_dashboard")
+            url_for(
+                "admin_dashboard"
+            )
         )
 
 
@@ -202,14 +428,34 @@ def admin_login():
         )
 
 
+        username_correct = (
+            username
+            == ADMIN_USERNAME
+        )
+
+
+        password_correct = (
+            check_password_hash(
+                ADMIN_PASSWORD_HASH,
+                password
+            )
+        )
+
+
         if (
-            username == ADMIN_USERNAME
-            and password == ADMIN_PASSWORD
+            username_correct
+            and password_correct
         ):
 
-            session["admin_logged_in"] = True
+            session.clear()
 
-            session["admin_username"] = username
+            session[
+                "admin_logged_in"
+            ] = True
+
+            session[
+                "admin_username"
+            ] = username
 
 
             flash(
@@ -218,12 +464,15 @@ def admin_login():
 
 
             return redirect(
-                url_for("admin_dashboard")
+                url_for(
+                    "admin_dashboard"
+                )
             )
 
 
         flash(
-            "Invalid username or password."
+            "Invalid username "
+            "or password."
         )
 
 
@@ -240,14 +489,18 @@ def admin_login():
 @login_required
 def admin_dashboard():
 
-    connection = get_database_connection()
+    connection = (
+        get_database_connection()
+    )
 
 
-    messages = connection.execute("""
+    messages = connection.execute(
+        """
         SELECT *
         FROM messages
         ORDER BY id DESC
-    """).fetchall()
+        """
+    ).fetchall()
 
 
     connection.close()
@@ -270,7 +523,9 @@ def admin_dashboard():
 @login_required
 def delete_message(message_id):
 
-    connection = get_database_connection()
+    connection = (
+        get_database_connection()
+    )
 
 
     connection.execute(
@@ -293,7 +548,9 @@ def delete_message(message_id):
 
 
     return redirect(
-        url_for("admin_dashboard")
+        url_for(
+            "admin_dashboard"
+        )
     )
 
 
@@ -301,7 +558,10 @@ def delete_message(message_id):
 # ADMIN LOGOUT
 # =========================
 
-@app.route("/admin/logout")
+@app.route(
+    "/admin/logout",
+    methods=["POST"]
+)
 @login_required
 def admin_logout():
 
@@ -314,8 +574,22 @@ def admin_logout():
 
 
     return redirect(
-        url_for("admin_login")
+        url_for(
+            "admin_login"
+        )
     )
+
+
+# =========================
+# RATE LIMIT ERROR
+# =========================
+
+@app.errorhandler(429)
+def rate_limit_exceeded(error):
+
+    return render_template(
+        "429.html"
+    ), 429
 
 
 # =========================
@@ -324,4 +598,14 @@ def admin_logout():
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    debug_mode = (
+        os.getenv(
+            "FLASK_DEBUG",
+            "0"
+        ) == "1"
+    )
+
+
+    app.run(
+        debug=debug_mode
+    )

@@ -16,6 +16,10 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/admin.css') }}">
 
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 
@@ -29,12 +33,11 @@
 <nav class="admin-navbar">
 
 
-    <a href="{{ url_for('admin_dashboard') }}"
-       class="admin-logo">
+    <div class="admin-logo">
 
         Hanwant<span>.</span>
 
-    </a>
+    </div>
 
 
     <div class="admin-nav-actions">
@@ -44,21 +47,41 @@
            target="_blank"
            class="portfolio-link">
 
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
             View Portfolio
 
         </a>
 
 
-        <a href="{{ url_for('admin_logout') }}"
-           class="logout-button">
+        <!-- LOGOUT FORM -->
 
-            Logout
+        <form
+            action="{{ url_for('admin_logout') }}"
+            method="POST"
+            class="logout-form">
 
-        </a>
+
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}">
+
+
+            <button
+                type="submit"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </form>
 
 
     </div>
-
 
 </nav>
 
@@ -75,8 +98,8 @@
 
         <div>
 
-            <p class="admin-label">
-                Administration
+            <p class="dashboard-small-title">
+                PORTFOLIO ADMIN
             </p>
 
 
@@ -85,7 +108,7 @@
             </h1>
 
 
-            <p class="dashboard-description">
+            <p>
 
                 Messages submitted through your
                 portfolio contact form.
@@ -95,7 +118,7 @@
         </div>
 
 
-        <div class="message-counter">
+        <div class="message-count">
 
             <span>
                 {{ messages|length }}
@@ -107,19 +130,20 @@
 
         </div>
 
-
     </div>
 
+
+    <!-- FLASH MESSAGES -->
 
     {% with flash_messages = get_flashed_messages() %}
 
         {% if flash_messages %}
 
-            {% for message in flash_messages %}
+            {% for flash_message in flash_messages %}
 
-                <div class="flash-message">
+                <div class="admin-flash">
 
-                    {{ message }}
+                    {{ flash_message }}
 
                 </div>
 
@@ -134,10 +158,10 @@
          MESSAGES
     ========================= -->
 
-    {% if messages %}
+    <div class="messages-container">
 
 
-        <div class="messages-container">
+        {% if messages %}
 
 
             {% for message in messages %}
@@ -146,11 +170,10 @@
                 <article class="message-card">
 
 
-                    <div class="message-header">
+                    <div class="message-card-header">
 
 
                         <div>
-
 
                             <span class="message-id">
 
@@ -165,24 +188,32 @@
 
                             </h2>
 
-
                         </div>
 
+
+                        <!-- DELETE FORM -->
 
                         <form
                             action="{{ url_for('delete_message', message_id=message['id']) }}"
                             method="POST"
-                            onsubmit="return confirm('Delete this message?');">
+                            onsubmit="return confirm('Are you sure you want to delete this message?');">
+
+
+                            <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}">
 
 
                             <button
                                 type="submit"
-                                class="delete-button">
+                                class="delete-btn">
+
+                                <i class="fa-solid fa-trash"></i>
 
                                 Delete
 
                             </button>
-
 
                         </form>
 
@@ -190,23 +221,25 @@
                     </div>
 
 
-                    <div class="sender-information">
+                    <div class="sender-info">
 
 
-                        <div>
+                        <div class="sender-item">
 
                             <span>
                                 Name
                             </span>
 
-                            <p>
+                            <strong>
+
                                 {{ message["name"] }}
-                            </p>
+
+                            </strong>
 
                         </div>
 
 
-                        <div>
+                        <div class="sender-item">
 
                             <span>
                                 Email
@@ -226,11 +259,9 @@
 
                     <div class="message-body">
 
-
                         <span>
                             Message
                         </span>
-
 
                         <p>
 
@@ -238,17 +269,24 @@
 
                         </p>
 
-
                     </div>
 
 
-                    <a
-                        href="mailto:{{ message['email'] }}?subject=Re: {{ message['subject'] }}"
-                        class="reply-button">
+                    <div class="message-actions">
 
-                        Reply by Email →
 
-                    </a>
+                        <a
+                            href="mailto:{{ message['email'] }}?subject=Re: {{ message['subject'] }}"
+                            class="reply-btn">
+
+                            <i class="fa-solid fa-reply"></i>
+
+                            Reply by Email
+
+                        </a>
+
+
+                    </div>
 
 
                 </article>
@@ -257,37 +295,33 @@
             {% endfor %}
 
 
-        </div>
+        {% else %}
 
 
-    {% else %}
+            <div class="empty-messages">
+
+                <i class="fa-solid fa-inbox"></i>
 
 
-        <div class="empty-state">
+                <h2>
+                    No Messages Yet
+                </h2>
 
 
-            <div class="empty-icon">
-                ✉
+                <p>
+
+                    Messages submitted through your
+                    portfolio will appear here.
+
+                </p>
+
             </div>
 
 
-            <h2>
-                No messages yet
-            </h2>
+        {% endif %}
 
 
-            <p>
-
-                Messages submitted through your
-                portfolio contact form will appear here.
-
-            </p>
-
-
-        </div>
-
-
-    {% endif %}
+    </div>
 
 
 </main>

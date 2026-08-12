@@ -16,29 +16,27 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/admin.css') }}">
 
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 
 <body>
 
 
-<div class="login-page">
+<div class="admin-login-page">
 
 
     <div class="login-card">
 
 
-        <a href="{{ url_for('home') }}"
-           class="admin-logo">
+        <div class="admin-logo">
 
             Hanwant<span>.</span>
 
-        </a>
-
-
-        <p class="admin-label">
-            Portfolio Administration
-        </p>
+        </div>
 
 
         <h1>
@@ -48,8 +46,7 @@
 
         <p class="login-description">
 
-            Sign in to manage contact messages
-            received through your portfolio.
+            Sign in to manage portfolio messages.
 
         </p>
 
@@ -60,7 +57,7 @@
 
                 {% for message in messages %}
 
-                    <div class="flash-message">
+                    <div class="admin-flash">
 
                         {{ message }}
 
@@ -73,14 +70,28 @@
         {% endwith %}
 
 
-        <form method="POST"
-              class="login-form">
+        <form
+            action="{{ url_for('admin_login') }}"
+            method="POST"
+            class="admin-form">
+
+
+            <!-- CSRF TOKEN -->
+
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}">
 
 
             <div class="form-group">
 
                 <label for="username">
+
+                    <i class="fa-solid fa-user"></i>
+
                     Username
+
                 </label>
 
 
@@ -98,7 +109,11 @@
             <div class="form-group">
 
                 <label for="password">
+
+                    <i class="fa-solid fa-lock"></i>
+
                     Password
+
                 </label>
 
 
@@ -113,13 +128,15 @@
             </div>
 
 
-            <button type="submit"
-                    class="login-button">
+            <button
+                type="submit"
+                class="admin-button">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
 
                 Login
 
             </button>
-
 
         </form>
 
@@ -127,13 +144,13 @@
         <a href="{{ url_for('home') }}"
            class="back-link">
 
-            ← Back to Portfolio
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Portfolio
 
         </a>
 
-
     </div>
-
 
 </div>
 

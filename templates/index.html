@@ -8,18 +8,77 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Portfolio of Hanwant Singh - Python Developer, Software Developer and Data Science Student.">
 
     <title>
-        Hanwant Singh | Portfolio
+        Hanwant Singh | Python Developer & MCA Data Science Student
     </title>
 
-    <!-- MAIN CSS -->
+
+    <meta name="description"
+          content="Portfolio of Hanwant Singh, a Python developer and MCA Data Science student building practical web applications with Flask, Django, SQL and modern development technologies.">
+
+
+    <meta name="keywords"
+          content="Hanwant Singh, Python Developer, Flask Developer, Django Developer, Software Developer, MCA Data Science, Portfolio, MeetVerse">
+
+
+    <meta name="author"
+          content="Hanwant Singh">
+
+
+    <meta name="robots"
+          content="index, follow">
+
+
+    <meta name="theme-color"
+          content="#0b1120">
+
+
+    <link rel="icon"
+          type="image/svg+xml"
+          href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+
+    <meta property="og:type"
+          content="website">
+
+
+    <meta property="og:title"
+          content="Hanwant Singh | Python Developer">
+
+
+    <meta property="og:description"
+          content="Personal portfolio of Hanwant Singh — Python developer and MCA Data Science student building practical software and web applications.">
+
+
+    <meta property="og:image"
+          content="{{ url_for('static', filename='images/profile.jpg', _external=True) }}">
+
+
+    <meta property="og:site_name"
+          content="Hanwant Singh Portfolio">
+
+
+    <meta name="twitter:card"
+          content="summary_large_image">
+
+
+    <meta name="twitter:title"
+          content="Hanwant Singh | Python Developer">
+
+
+    <meta name="twitter:description"
+          content="Python Developer, Software Developer and MCA Data Science student.">
+
+
+    <meta name="twitter:image"
+          content="{{ url_for('static', filename='images/profile.jpg', _external=True) }}">
+
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- FONT AWESOME -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -35,69 +94,94 @@
 
 <nav class="navbar" id="navbar">
 
-    <a href="#home" class="logo">
+
+    <a href="#home"
+       class="logo"
+       aria-label="Hanwant Singh Home">
+
         Hanwant<span>.</span>
+
     </a>
 
 
-    <ul class="nav-links" id="navLinks">
+    <ul class="nav-links"
+        id="navLinks">
+
 
         <li>
             <a href="#home"
                class="nav-link active">
+
                 Home
+
             </a>
         </li>
+
 
         <li>
             <a href="#about"
                class="nav-link">
+
                 About
+
             </a>
         </li>
+
 
         <li>
             <a href="#skills"
                class="nav-link">
+
                 Skills
+
             </a>
         </li>
+
 
         <li>
             <a href="#projects"
                class="nav-link">
+
                 Projects
+
             </a>
         </li>
+
 
         <li>
             <a href="#education"
                class="nav-link">
+
                 Education
+
             </a>
         </li>
+
 
         <li>
             <a href="#contact"
                class="nav-link">
+
                 Contact
+
             </a>
         </li>
+
 
     </ul>
 
 
-    <!-- MOBILE MENU -->
-
-    <button class="menu-btn"
-            id="menuBtn"
-            aria-label="Open navigation menu">
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open navigation menu">
 
         <span></span>
         <span></span>
         <span></span>
 
     </button>
+
 
 </nav>
 
@@ -106,10 +190,12 @@
      HERO
 ========================= -->
 
-<section class="hero" id="home">
+<section class="hero"
+         id="home">
 
 
     <div class="hero-content reveal">
+
 
         <p class="hello">
             Hello, I'm
@@ -143,6 +229,7 @@
 
         <div class="hero-buttons">
 
+
             <a href="#projects"
                class="btn primary-btn">
 
@@ -153,9 +240,11 @@
             </a>
 
 
-            <a href="{{ url_for('static', filename='resume/Hanwant_Singh_Resume.pdf') }}"
-               target="_blank"
-               class="btn secondary-btn">
+            <a
+                href="{{ url_for('static', filename='resume/Hanwant_Singh_Resume.pdf') }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn secondary-btn">
 
                 <i class="fa-solid fa-file-lines"></i>
 
@@ -163,14 +252,17 @@
 
             </a>
 
+
         </div>
 
 
         <div class="social-links">
 
-            <a href="https://github.com/hanwant26"
-               target="_blank"
-               rel="noopener noreferrer">
+
+            <a
+                href="https://github.com/hanwant26"
+                target="_blank"
+                rel="noopener noreferrer">
 
                 <i class="fa-brands fa-github"></i>
 
@@ -179,9 +271,10 @@
             </a>
 
 
-            <a href="https://www.linkedin.com/in/hanwant-singh"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+                href="https://www.linkedin.com/in/hanwant-singh"
+                target="_blank"
+                rel="noopener noreferrer">
 
                 <i class="fa-brands fa-linkedin"></i>
 
@@ -189,24 +282,28 @@
 
             </a>
 
+
         </div>
+
 
     </div>
 
 
-    <!-- PROFILE IMAGE -->
-
     <div class="hero-image reveal">
+
 
         <div class="image-border">
 
             <img
                 src="{{ url_for('static', filename='images/profile.jpg') }}"
-                alt="Portrait of Hanwant Singh">
+                alt="Hanwant Singh - Python Developer"
+                loading="eager">
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -217,6 +314,7 @@
 
 <section class="about section"
          id="about">
+
 
     <div class="section-heading reveal">
 
@@ -235,6 +333,7 @@
 
 
         <div class="about-card reveal">
+
 
             <h3>
                 Who I Am
@@ -267,18 +366,19 @@
 
             </p>
 
+
         </div>
 
 
         <div class="about-info">
 
 
-            <!-- BCA -->
-
             <div class="info-card reveal">
 
                 <div class="info-icon">
+
                     <i class="fa-solid fa-graduation-cap"></i>
+
                 </div>
 
                 <span class="info-number">
@@ -296,12 +396,12 @@
             </div>
 
 
-            <!-- MCA -->
-
             <div class="info-card reveal">
 
                 <div class="info-icon">
+
                     <i class="fa-solid fa-user-graduate"></i>
+
                 </div>
 
                 <span class="info-number">
@@ -319,12 +419,12 @@
             </div>
 
 
-            <!-- PROJECTS -->
-
             <div class="info-card reveal">
 
                 <div class="info-icon">
+
                     <i class="fa-solid fa-laptop-code"></i>
+
                 </div>
 
                 <span class="info-number">
@@ -342,12 +442,12 @@
             </div>
 
 
-            <!-- PYTHON -->
-
             <div class="info-card reveal">
 
                 <div class="info-icon">
+
                     <i class="fa-brands fa-python"></i>
+
                 </div>
 
                 <span class="info-number">
@@ -364,9 +464,12 @@
 
             </div>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -377,6 +480,7 @@
 
 <section class="skills section"
          id="skills">
+
 
     <div class="section-heading reveal">
 
@@ -393,8 +497,6 @@
 
     <div class="skills-container">
 
-
-        <!-- PROGRAMMING -->
 
         <div class="skill-card reveal">
 
@@ -413,29 +515,21 @@
                     Python
                 </span>
 
-                <span>
-                    SQL
-                </span>
+                <span>SQL</span>
 
                 <span>
                     <i class="fa-brands fa-js"></i>
                     JavaScript
                 </span>
 
-                <span>
-                    C++
-                </span>
+                <span>C++</span>
 
-                <span>
-                    Shell Scripting
-                </span>
+                <span>Shell Scripting</span>
 
             </div>
 
         </div>
 
-
-        <!-- WEB DEVELOPMENT -->
 
         <div class="skill-card reveal">
 
@@ -468,16 +562,12 @@
                     Bootstrap
                 </span>
 
-                <span>
-                    REST APIs
-                </span>
+                <span>REST APIs</span>
 
             </div>
 
         </div>
 
-
-        <!-- DATABASES -->
 
         <div class="skill-card reveal">
 
@@ -492,19 +582,14 @@
             <div class="skill-tags">
 
                 <span>MySQL</span>
-
                 <span>SQLite</span>
-
                 <span>SQL Queries</span>
-
                 <span>Database Design</span>
 
             </div>
 
         </div>
 
-
-        <!-- TOOLS -->
 
         <div class="skill-card reveal">
 
@@ -533,20 +618,14 @@
                     Linux
                 </span>
 
-                <span>
-                    VS Code
-                </span>
+                <span>VS Code</span>
 
-                <span>
-                    VirtualBox
-                </span>
+                <span>VirtualBox</span>
 
             </div>
 
         </div>
 
-
-        <!-- DATA -->
 
         <div class="skill-card reveal">
 
@@ -561,19 +640,14 @@
             <div class="skill-tags">
 
                 <span>Data Mining</span>
-
                 <span>Data Warehousing</span>
-
                 <span>Data Cleaning</span>
-
                 <span>Visualization</span>
 
             </div>
 
         </div>
 
-
-        <!-- COMPUTER SCIENCE -->
 
         <div class="skill-card reveal">
 
@@ -588,20 +662,18 @@
             <div class="skill-tags">
 
                 <span>OOP</span>
-
                 <span>DBMS</span>
-
                 <span>DSA</span>
-
                 <span>Software Engineering</span>
-
                 <span>Operating Systems</span>
 
             </div>
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -612,6 +684,7 @@
 
 <section class="projects section"
          id="projects">
+
 
     <div class="section-heading reveal">
 
@@ -629,12 +702,10 @@
     <div class="projects-container">
 
 
-        <!-- =========================
-             PROJECT 01
-             MEETVERSE
-        ========================= -->
+        <!-- MEETVERSE -->
 
         <article class="project-card reveal">
+
 
             <div class="project-number">
                 01
@@ -642,7 +713,9 @@
 
 
             <div class="project-top-icon">
+
                 <i class="fa-solid fa-video"></i>
+
             </div>
 
 
@@ -668,30 +741,36 @@
 
             <div class="project-features">
 
+
                 <p>
                     <i class="fa-solid fa-check"></i>
                     Real-time video conferencing
                 </p>
+
 
                 <p>
                     <i class="fa-solid fa-check"></i>
                     Persistent meeting chat
                 </p>
 
+
                 <p>
                     <i class="fa-solid fa-check"></i>
                     Dynamic participant tracking
                 </p>
+
 
                 <p>
                     <i class="fa-solid fa-check"></i>
                     Live meeting timer
                 </p>
 
+
                 <p>
                     <i class="fa-solid fa-check"></i>
                     Secure room creation
                 </p>
+
 
             </div>
 
@@ -699,26 +778,21 @@
             <div class="project-tech">
 
                 <span>Python</span>
-
                 <span>Django</span>
-
                 <span>LiveKit</span>
-
                 <span>SQLite</span>
-
                 <span>JavaScript</span>
-
                 <span>HTML5</span>
-
                 <span>CSS3</span>
 
             </div>
 
 
-            <a href="https://github.com/hanwant26/MeetVerse"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="project-btn">
+            <a
+                href="https://github.com/hanwant26/MeetVerse"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-btn">
 
                 <i class="fa-brands fa-github"></i>
 
@@ -728,15 +802,14 @@
 
             </a>
 
+
         </article>
 
 
-        <!-- =========================
-             PROJECT 02
-             IN DEVELOPMENT
-        ========================= -->
+        <!-- UPCOMING -->
 
         <article class="project-card upcoming-project reveal">
+
 
             <div class="project-number">
                 02
@@ -744,7 +817,9 @@
 
 
             <div class="project-top-icon">
+
                 <i class="fa-solid fa-code-branch"></i>
+
             </div>
 
 
@@ -800,15 +875,14 @@
             <div class="project-tech">
 
                 <span>Python</span>
-
                 <span>In Development</span>
-
                 <span>Coming Soon</span>
 
             </div>
 
 
             <div class="project-progress">
+
 
                 <div class="progress-header">
 
@@ -829,6 +903,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -840,10 +915,12 @@
 
             </div>
 
+
         </article>
 
 
     </div>
+
 
 </section>
 
@@ -854,6 +931,7 @@
 
 <section class="education section"
          id="education">
+
 
     <div class="section-heading reveal">
 
@@ -871,9 +949,8 @@
     <div class="education-container">
 
 
-        <!-- MCA -->
-
         <div class="education-card reveal">
+
 
             <div class="education-year">
 
@@ -886,17 +963,21 @@
 
             <div class="education-content">
 
+
                 <span class="education-status">
                     Currently Pursuing
                 </span>
+
 
                 <h3>
                     Master of Computer Applications
                 </h3>
 
+
                 <h4>
                     Data Science
                 </h4>
+
 
                 <p class="institution">
 
@@ -906,6 +987,7 @@
 
                 </p>
 
+
                 <p>
 
                     Building stronger foundations in Data Science,
@@ -914,14 +996,15 @@
 
                 </p>
 
+
             </div>
+
 
         </div>
 
 
-        <!-- BCA -->
-
         <div class="education-card reveal">
+
 
             <div class="education-year">
 
@@ -934,17 +1017,21 @@
 
             <div class="education-content">
 
+
                 <span class="education-status completed">
                     Completed
                 </span>
+
 
                 <h3>
                     Bachelor of Computer Applications
                 </h3>
 
+
                 <h4>
                     BCA (Science)
                 </h4>
+
 
                 <p class="institution">
 
@@ -956,6 +1043,7 @@
 
                 </p>
 
+
                 <p>
 
                     Developed foundations in programming,
@@ -965,11 +1053,15 @@
 
                 </p>
 
+
             </div>
+
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -980,6 +1072,7 @@
 
 <section class="contact section"
          id="contact">
+
 
     <div class="section-heading reveal">
 
@@ -997,13 +1090,13 @@
     <div class="contact-container">
 
 
-        <!-- CONTACT INFO -->
-
         <div class="contact-info reveal">
+
 
             <h3>
                 Let's Work Together
             </h3>
+
 
             <p>
 
@@ -1014,8 +1107,6 @@
             </p>
 
 
-            <!-- EMAIL -->
-
             <div class="contact-detail">
 
                 <div class="contact-icon">
@@ -1024,22 +1115,16 @@
 
                 <div>
 
-                    <span>
-                        Email
-                    </span>
+                    <span>Email</span>
 
                     <a href="mailto:singhhanwant325@gmail.com">
-
                         singhhanwant325@gmail.com
-
                     </a>
 
                 </div>
 
             </div>
 
-
-            <!-- GITHUB -->
 
             <div class="contact-detail">
 
@@ -1049,13 +1134,12 @@
 
                 <div>
 
-                    <span>
-                        GitHub
-                    </span>
+                    <span>GitHub</span>
 
-                    <a href="https://github.com/hanwant26"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a
+                        href="https://github.com/hanwant26"
+                        target="_blank"
+                        rel="noopener noreferrer">
 
                         github.com/hanwant26
 
@@ -1066,8 +1150,6 @@
             </div>
 
 
-            <!-- LINKEDIN -->
-
             <div class="contact-detail">
 
                 <div class="contact-icon">
@@ -1076,13 +1158,12 @@
 
                 <div>
 
-                    <span>
-                        LinkedIn
-                    </span>
+                    <span>LinkedIn</span>
 
-                    <a href="https://www.linkedin.com/in/hanwant-singh"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a
+                        href="https://www.linkedin.com/in/hanwant-singh"
+                        target="_blank"
+                        rel="noopener noreferrer">
 
                         linkedin.com/in/hanwant-singh
 
@@ -1092,10 +1173,9 @@
 
             </div>
 
+
         </div>
 
-
-        <!-- CONTACT FORM -->
 
         <div class="contact-form-container reveal">
 
@@ -1119,12 +1199,22 @@
             {% endwith %}
 
 
-            <form action="{{ url_for('contact') }}"
-                  method="POST"
-                  class="contact-form">
+            <form
+                action="{{ url_for('contact') }}"
+                method="POST"
+                class="contact-form">
+
+
+                <!-- CSRF TOKEN -->
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}">
 
 
                 <div class="form-group">
+
 
                     <label for="name">
 
@@ -1134,17 +1224,22 @@
 
                     </label>
 
+
                     <input
                         type="text"
                         id="name"
                         name="name"
                         placeholder="Enter your name"
+                        autocomplete="name"
+                        maxlength="100"
                         required>
+
 
                 </div>
 
 
                 <div class="form-group">
+
 
                     <label for="email">
 
@@ -1154,17 +1249,22 @@
 
                     </label>
 
+
                     <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
+                        maxlength="150"
                         required>
+
 
                 </div>
 
 
                 <div class="form-group">
+
 
                     <label for="subject">
 
@@ -1174,17 +1274,21 @@
 
                     </label>
 
+
                     <input
                         type="text"
                         id="subject"
                         name="subject"
                         placeholder="What is this about?"
+                        maxlength="150"
                         required>
+
 
                 </div>
 
 
                 <div class="form-group">
+
 
                     <label for="message">
 
@@ -1194,12 +1298,15 @@
 
                     </label>
 
+
                     <textarea
                         id="message"
                         name="message"
                         rows="6"
                         placeholder="Write your message..."
+                        maxlength="2000"
                         required></textarea>
+
 
                 </div>
 
@@ -1214,11 +1321,15 @@
 
                 </button>
 
+
             </form>
+
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -1229,7 +1340,9 @@
 
 <footer>
 
+
     <div class="footer-content">
+
 
         <div class="footer-logo">
 
@@ -1256,7 +1369,9 @@
 
         </p>
 
+
     </div>
+
 
 </footer>
 
@@ -1265,9 +1380,10 @@
      BACK TO TOP
 ========================= -->
 
-<button id="backToTop"
-        class="back-to-top"
-        aria-label="Back to top">
+<button
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top">
 
     <i class="fa-solid fa-arrow-up"></i>
 

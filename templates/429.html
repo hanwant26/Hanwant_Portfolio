@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Too Many Requests | Hanwant Portfolio
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-login-page">
+
+
+    <div class="login-card">
+
+
+        <div class="admin-logo">
+
+            Hanwant<span>.</span>
+
+        </div>
+
+
+        <h1>
+            Too Many Requests
+        </h1>
+
+
+        <p class="login-description">
+
+            You've made too many requests in a short
+            period of time. Please wait a moment and
+            try again.
+
+        </p>
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="admin-button">
+
+            <i class="fa-solid fa-house"></i>
+
+            Return to Portfolio
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
