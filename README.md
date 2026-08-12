@@ -1,16 +1,26 @@
 # Hanwant Singh — Personal Portfolio
 
-A modern and responsive personal portfolio website built with **Python and Flask** to showcase my skills, education, projects, resume, and contact information.
+A modern, responsive full-stack personal portfolio built with **Python and Flask** to showcase my skills, education, projects, resume, and contact information.
 
-The portfolio also includes a secure private admin dashboard for managing messages submitted through the contact form.
+The application also includes a private admin dashboard for managing contact messages and uses **Neon PostgreSQL** for persistent production data storage.
 
 ---
 
-## About Me
+## 🌐 Live Portfolio
+
+### [View Live Portfolio](https://portfolio-hanwant.vercel.app)
+
+```text
+https://portfolio-hanwant.vercel.app
+```
+
+---
+
+## 👨‍💻 About Me
 
 I am a Computer Applications graduate currently pursuing a **Master of Computer Applications (MCA) in Data Science**.
 
-My current areas of interest include:
+My areas of interest include:
 
 - Python Development
 - Software Development
@@ -23,9 +33,9 @@ I enjoy building practical applications and continuously improving my programmin
 
 ---
 
-## Portfolio Features
+# ✨ Portfolio Features
 
-- Responsive dark-themed user interface
+- Responsive modern dark interface
 - Animated hero section
 - Dynamic typing animation
 - About section
@@ -46,39 +56,43 @@ I enjoy building practical applications and continuously improving my programmin
 
 ---
 
-## Backend Features
+# ⚙️ Backend Features
 
 - Python Flask backend
-- SQLite database
+- SQLite support for local development
+- Neon PostgreSQL for production
 - Contact message storage
 - Server-side form validation
-- Email validation
+- Email format validation
 - Environment-based configuration
 - CSRF protection
 - Request rate limiting
+- Secure session configuration
 
 ---
 
-## Admin Dashboard
+# 🔐 Admin Dashboard
 
-The portfolio includes a private administration panel for managing contact submissions.
+The portfolio includes a private administration panel for managing messages submitted through the contact form.
 
 Features include:
 
 - Secure admin authentication
 - Hashed password verification
-- Session-based login
+- Session-based authentication
 - Contact message dashboard
-- View submitted messages
+- View contact submissions
 - Reply through email
 - Delete messages
 - Secure POST-based logout
 - CSRF-protected actions
 - Login rate limiting
 
+Admin routes are intentionally not linked from the public navigation.
+
 ---
 
-# Featured Project
+# 🚀 Featured Project
 
 ## MeetVerse
 
@@ -103,7 +117,7 @@ https://github.com/hanwant26/MeetVerse
 
 ---
 
-# Technical Skills
+# 🛠️ Technical Skills
 
 ## Programming
 
@@ -124,6 +138,7 @@ https://github.com/hanwant26/MeetVerse
 
 ## Databases
 
+- PostgreSQL
 - MySQL
 - SQLite
 - SQL Queries
@@ -136,6 +151,8 @@ https://github.com/hanwant26/MeetVerse
 - Linux
 - VS Code
 - VirtualBox
+- Vercel
+- Neon
 
 ## Data Fundamentals
 
@@ -154,7 +171,55 @@ https://github.com/hanwant26/MeetVerse
 
 ---
 
-# Project Structure
+# 🏗️ Production Architecture
+
+```text
+                     ┌─────────────────────┐
+                     │       Visitor       │
+                     └─────────┬───────────┘
+                               │
+                               ▼
+                     ┌─────────────────────┐
+                     │       Vercel        │
+                     │                     │
+                     │   Flask Portfolio   │
+                     └─────────┬───────────┘
+                               │
+                         DATABASE_URL
+                               │
+                               ▼
+                     ┌─────────────────────┐
+                     │       Neon          │
+                     │                     │
+                     │    PostgreSQL       │
+                     └─────────────────────┘
+```
+
+### Production
+
+```text
+Frontend + Flask Backend
+        ↓
+Vercel
+        ↓
+Neon PostgreSQL
+```
+
+### Local Development
+
+```text
+Flask
+  ↓
+SQLite
+  ↓
+portfolio.db
+```
+
+The application automatically uses PostgreSQL when `DATABASE_URL` is available and falls back to SQLite during local development.
+
+---
+
+# 📁 Project Structure
 
 ```text
 Hanwant_Portfolio/
@@ -190,7 +255,7 @@ Hanwant_Portfolio/
 └── portfolio.db
 ```
 
-The following files are intentionally excluded from GitHub:
+The following are intentionally excluded from GitHub:
 
 ```text
 .env
@@ -202,7 +267,47 @@ __pycache__/
 
 ---
 
-# Installation
+# 💾 Database
+
+The application supports two database modes.
+
+## Local Development
+
+SQLite is used when `DATABASE_URL` is not defined.
+
+```text
+portfolio.db
+```
+
+## Production
+
+The deployed application uses:
+
+```text
+Neon PostgreSQL
+```
+
+through the environment variable:
+
+```env
+DATABASE_URL=postgresql://...
+```
+
+The database stores contact form submissions containing:
+
+```text
+Name
+Email
+Subject
+Message
+Created At
+```
+
+These messages can be viewed and managed through the private admin dashboard.
+
+---
+
+# 📦 Installation
 
 ## 1. Clone the repository
 
@@ -218,7 +323,7 @@ cd Hanwant_Portfolio
 
 ## 3. Create a virtual environment
 
-On Windows:
+Windows:
 
 ```bash
 py -m venv .venv
@@ -232,13 +337,13 @@ PowerShell:
 .\.venv\Scripts\Activate.ps1
 ```
 
-If PowerShell blocks script execution for the current terminal session:
+If PowerShell blocks script execution:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
-Then activate again:
+Then:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -252,40 +357,50 @@ python -m pip install -r requirements.txt
 
 ---
 
-# Environment Variables
+# 🔑 Environment Variables
 
-Create a `.env` file in the project root.
+Create a `.env` file in the root directory.
 
 ```env
 SECRET_KEY=your-secret-key
 ADMIN_USERNAME=your-admin-username
 ADMIN_PASSWORD_HASH=your-generated-password-hash
+
 FLASK_DEBUG=1
+SESSION_COOKIE_SECURE=0
 ```
 
-Never upload your `.env` file to GitHub.
+For local SQLite development, `DATABASE_URL` can be omitted.
+
+For PostgreSQL:
+
+```env
+DATABASE_URL=your-postgresql-connection-string
+```
+
+Never commit the `.env` file.
 
 ---
 
-# Generate Admin Password Hash
+# 🔒 Generate Admin Password Hash
 
-Generate a password hash using:
+Generate a secure password hash:
 
 ```bash
 python -c "from werkzeug.security import generate_password_hash; print(generate_password_hash('YOUR_PASSWORD'))"
 ```
 
-Copy the generated value into:
+Store the generated value in:
 
 ```env
 ADMIN_PASSWORD_HASH=your-generated-hash
 ```
 
-The actual admin password should never be stored directly in the source code.
+The plaintext admin password is never stored in the source code.
 
 ---
 
-# Run Locally
+# ▶️ Run Locally
 
 Start the Flask application:
 
@@ -293,7 +408,7 @@ Start the Flask application:
 python app.py
 ```
 
-Open the portfolio:
+Open:
 
 ```text
 http://127.0.0.1:5000
@@ -307,42 +422,15 @@ http://127.0.0.1:5000/admin/login
 
 ---
 
-# Database
+# 🛡️ Security
 
-The portfolio currently uses **SQLite**.
-
-The local database file is:
-
-```text
-portfolio.db
-```
-
-It contains the contact messages submitted through the portfolio.
-
-The database currently stores:
-
-```text
-Name
-Email
-Subject
-Message
-```
-
-The admin dashboard reads these records and allows them to be viewed or deleted.
-
-`portfolio.db` is excluded from GitHub to prevent contact submissions from being uploaded publicly.
-
----
-
-# Security
-
-The project currently includes:
+The application currently includes:
 
 - Hashed admin password authentication
 - Environment variables for sensitive configuration
 - CSRF protection
 - POST-based admin logout
-- CSRF-protected delete operations
+- CSRF-protected delete actions
 - Server-side input validation
 - Email format validation
 - Input length limits
@@ -350,13 +438,44 @@ The project currently includes:
 - Contact form rate limiting
 - HTTPOnly session cookies
 - SameSite session protection
-- Git exclusion of secrets and database records
-
-Additional production-specific security configuration will be applied when the application is deployed.
+- Secure cookies in production
+- Parameterized SQL queries
+- Secrets excluded from Git
+- Database records excluded from Git
 
 ---
 
-# Education
+# ☁️ Deployment
+
+The production portfolio is deployed using:
+
+### Application Hosting
+
+**Vercel**
+
+### Production Database
+
+**Neon PostgreSQL**
+
+### Source Control
+
+**GitHub**
+
+Production URL:
+
+```text
+https://portfolio-hanwant.vercel.app
+```
+
+Repository:
+
+```text
+https://github.com/hanwant26/Hanwant_Portfolio
+```
+
+---
+
+# 🎓 Education
 
 ## Master of Computer Applications — Data Science
 
@@ -374,9 +493,13 @@ Additional production-specific security configuration will be applied when the a
 
 ---
 
-# Contact
+# 📬 Contact
 
-**Hanwant Singh**
+## Hanwant Singh
+
+### Portfolio
+
+https://portfolio-hanwant.vercel.app
 
 ### GitHub
 
@@ -392,21 +515,27 @@ singhhanwant325@gmail.com
 
 ---
 
-# Portfolio Repository
+# 📂 Repositories
+
+### Portfolio
 
 https://github.com/hanwant26/Hanwant_Portfolio
 
----
+### MeetVerse
 
-# Project Status
-
-The portfolio is actively maintained.
-
-More projects and improvements will be added as I continue learning and building new applications.
+https://github.com/hanwant26/MeetVerse
 
 ---
 
-# License
+# 📌 Project Status
+
+**Live and actively maintained.**
+
+Future updates will include additional projects and improvements as I continue expanding my software development and data science skills.
+
+---
+
+# 📄 License
 
 This project is intended for personal portfolio and educational use.
 
