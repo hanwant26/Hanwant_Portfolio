@@ -1,8 +1,8 @@
 # Hanwant Singh — Personal Portfolio
 
-A modern, responsive personal portfolio website built with **Python and Flask** to showcase my skills, education, projects, resume, and contact information.
+A modern and responsive personal portfolio website built with **Python and Flask** to showcase my skills, education, projects, resume, and contact information.
 
-The portfolio also includes a private admin dashboard for managing messages submitted through the contact form.
+The portfolio also includes a secure private admin dashboard for managing messages submitted through the contact form.
 
 ---
 
@@ -10,32 +10,31 @@ The portfolio also includes a private admin dashboard for managing messages subm
 
 I am a Computer Applications graduate currently pursuing a **Master of Computer Applications (MCA) in Data Science**.
 
-I am interested in:
+My current areas of interest include:
 
 - Python Development
 - Software Development
+- Backend Development
 - Web Development
 - Data Science
-- Backend Development
 - Database Systems
 
 I enjoy building practical applications and continuously improving my programming, problem-solving, and software development skills.
 
 ---
 
-## Features
+## Portfolio Features
 
-### Portfolio
-
-- Responsive modern dark UI
+- Responsive dark-themed user interface
 - Animated hero section
 - Dynamic typing animation
 - About section
 - Technical skills section
 - Featured projects
-- Education timeline
+- Education section
 - Resume viewer
-- GitHub and LinkedIn integration
+- GitHub integration
+- LinkedIn integration
 - Contact form
 - Scroll reveal animations
 - Active navigation highlighting
@@ -45,39 +44,47 @@ I enjoy building practical applications and continuously improving my programmin
 - SEO metadata
 - Social sharing metadata
 
-### Backend
+---
 
-- Flask application
+## Backend Features
+
+- Python Flask backend
 - SQLite database
 - Contact message storage
 - Server-side form validation
-- Email format validation
+- Email validation
+- Environment-based configuration
 - CSRF protection
 - Request rate limiting
-- Environment-based configuration
 
-### Admin Dashboard
+---
 
-- Secure admin login
-- Password hashing
-- Session-based authentication
-- Private message dashboard
-- View contact submissions
+## Admin Dashboard
+
+The portfolio includes a private administration panel for managing contact submissions.
+
+Features include:
+
+- Secure admin authentication
+- Hashed password verification
+- Session-based login
+- Contact message dashboard
+- View submitted messages
 - Reply through email
 - Delete messages
-- Secure logout
-- CSRF-protected admin actions
+- Secure POST-based logout
+- CSRF-protected actions
 - Login rate limiting
 
 ---
 
-## Featured Project
+# Featured Project
 
-### MeetVerse
+## MeetVerse
 
-MeetVerse is a real-time video conferencing platform built using Python and Django.
+**MeetVerse** is a real-time video conferencing platform built using Python and Django.
 
-Features include:
+### Features
 
 - Real-time video conferencing
 - Room-based communication
@@ -86,19 +93,19 @@ Features include:
 - Live meeting timer
 - Secure room creation
 
-**Technologies**
+### Technologies
 
 `Python` `Django` `LiveKit` `SQLite` `JavaScript` `HTML5` `CSS3`
 
-Repository:
+### Repository
 
 https://github.com/hanwant26/MeetVerse
 
 ---
 
-## Technologies Used
+# Technical Skills
 
-### Programming
+## Programming
 
 - Python
 - SQL
@@ -106,7 +113,7 @@ https://github.com/hanwant26/MeetVerse
 - C++
 - Shell Scripting
 
-### Web Development
+## Web Development
 
 - Flask
 - Django
@@ -115,12 +122,14 @@ https://github.com/hanwant26/MeetVerse
 - Bootstrap
 - REST APIs
 
-### Databases
+## Databases
 
 - MySQL
 - SQLite
+- SQL Queries
+- Database Design
 
-### Tools
+## Tools & Platforms
 
 - Git
 - GitHub
@@ -128,9 +137,24 @@ https://github.com/hanwant26/MeetVerse
 - VS Code
 - VirtualBox
 
+## Data Fundamentals
+
+- Data Mining
+- Data Warehousing
+- Data Cleaning
+- Data Visualization
+
+## Computer Science Fundamentals
+
+- Object-Oriented Programming
+- DBMS
+- Data Structures and Algorithms
+- Software Engineering
+- Operating Systems
+
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 Hanwant_Portfolio/
@@ -138,7 +162,6 @@ Hanwant_Portfolio/
 ├── app.py
 ├── requirements.txt
 ├── README.md
-├── .env
 ├── .gitignore
 │
 ├── templates/
@@ -162,36 +185,46 @@ Hanwant_Portfolio/
 │   └── resume/
 │       └── Hanwant_Singh_Resume.pdf
 │
+├── .env
+├── .venv/
 └── portfolio.db
 ```
 
-> `.env`, `.venv`, and `portfolio.db` are excluded from GitHub using `.gitignore`.
+The following files are intentionally excluded from GitHub:
+
+```text
+.env
+.venv/
+portfolio.db
+__pycache__/
+.vscode/
+```
 
 ---
 
-## Installation
+# Installation
 
-### 1. Clone the repository
+## 1. Clone the repository
 
 ```bash
-git clone YOUR_PORTFOLIO_REPOSITORY_URL
+git clone https://github.com/hanwant26/Hanwant_Portfolio.git
 ```
 
-### 2. Open the project
+## 2. Enter the project directory
 
 ```bash
 cd Hanwant_Portfolio
 ```
 
-### 3. Create a virtual environment
+## 3. Create a virtual environment
 
-Windows:
+On Windows:
 
 ```bash
 py -m venv .venv
 ```
 
-### 4. Activate the environment
+## 4. Activate the virtual environment
 
 PowerShell:
 
@@ -199,7 +232,19 @@ PowerShell:
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 5. Install dependencies
+If PowerShell blocks script execution for the current terminal session:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+Then activate again:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+## 5. Install dependencies
 
 ```bash
 python -m pip install -r requirements.txt
@@ -207,40 +252,40 @@ python -m pip install -r requirements.txt
 
 ---
 
-## Environment Variables
+# Environment Variables
 
 Create a `.env` file in the project root.
 
 ```env
 SECRET_KEY=your-secret-key
 ADMIN_USERNAME=your-admin-username
-ADMIN_PASSWORD_HASH=your-password-hash
+ADMIN_PASSWORD_HASH=your-generated-password-hash
 FLASK_DEBUG=1
 ```
 
-Never commit your `.env` file to GitHub.
+Never upload your `.env` file to GitHub.
 
 ---
 
-## Generate an Admin Password Hash
+# Generate Admin Password Hash
 
-Run:
+Generate a password hash using:
 
 ```bash
 python -c "from werkzeug.security import generate_password_hash; print(generate_password_hash('YOUR_PASSWORD'))"
 ```
 
-Copy the generated hash into:
+Copy the generated value into:
 
 ```env
-ADMIN_PASSWORD_HASH=
+ADMIN_PASSWORD_HASH=your-generated-hash
 ```
 
-Do not store your normal admin password directly in `.env`.
+The actual admin password should never be stored directly in the source code.
 
 ---
 
-## Run Locally
+# Run Locally
 
 Start the Flask application:
 
@@ -248,7 +293,7 @@ Start the Flask application:
 python app.py
 ```
 
-Then open:
+Open the portfolio:
 
 ```text
 http://127.0.0.1:5000
@@ -262,35 +307,66 @@ http://127.0.0.1:5000/admin/login
 
 ---
 
-## Security
+# Database
 
-The application currently includes:
+The portfolio currently uses **SQLite**.
+
+The local database file is:
+
+```text
+portfolio.db
+```
+
+It contains the contact messages submitted through the portfolio.
+
+The database currently stores:
+
+```text
+Name
+Email
+Subject
+Message
+```
+
+The admin dashboard reads these records and allows them to be viewed or deleted.
+
+`portfolio.db` is excluded from GitHub to prevent contact submissions from being uploaded publicly.
+
+---
+
+# Security
+
+The project currently includes:
 
 - Hashed admin password authentication
 - Environment variables for sensitive configuration
 - CSRF protection
-- Secure POST-based logout
+- POST-based admin logout
 - CSRF-protected delete operations
 - Server-side input validation
-- Contact message length validation
+- Email format validation
+- Input length limits
 - Admin login rate limiting
 - Contact form rate limiting
 - HTTPOnly session cookies
 - SameSite session protection
+- Git exclusion of secrets and database records
 
-Additional production configuration will be applied before deployment.
+Additional production-specific security configuration will be applied when the application is deployed.
 
 ---
 
-## Education
+# Education
 
-### Master of Computer Applications — Data Science
+## Master of Computer Applications — Data Science
 
 **Lovely Professional University**
 
 2026 — Present
 
-### Bachelor of Computer Applications — BCA (Science)
+---
+
+## Bachelor of Computer Applications — BCA (Science)
 
 **Progressive Education Society's Modern College of Arts, Science and Commerce, Pune**
 
@@ -298,31 +374,40 @@ Additional production configuration will be applied before deployment.
 
 ---
 
-## Contact
+# Contact
 
 **Hanwant Singh**
 
-GitHub  
+### GitHub
+
 https://github.com/hanwant26
 
-LinkedIn  
+### LinkedIn
+
 https://www.linkedin.com/in/hanwant-singh
 
-Email  
+### Email
+
 singhhanwant325@gmail.com
 
 ---
 
-## Status
+# Portfolio Repository
 
-The portfolio is actively maintained.
-
-More projects and improvements will be added as I continue developing my skills and building new applications.
+https://github.com/hanwant26/Hanwant_Portfolio
 
 ---
 
-## License
+# Project Status
 
-This project is intended for personal portfolio use.
+The portfolio is actively maintained.
+
+More projects and improvements will be added as I continue learning and building new applications.
+
+---
+
+# License
+
+This project is intended for personal portfolio and educational use.
 
 © 2026 Hanwant Singh
