@@ -1,0 +1,686 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #0b1120;
+
+    color: #f8fafc;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================
+   ADMIN LOGO
+========================= */
+
+.admin-logo {
+    color: white;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.admin-logo span {
+    color: #38bdf8;
+}
+
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+}
+
+
+.login-card {
+    width: 100%;
+
+    max-width: 460px;
+
+    padding: 45px;
+
+    background: #111c30;
+
+    border-radius: 18px;
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.12);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+.admin-label {
+    color: #38bdf8;
+
+    margin-top: 25px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.login-card h1 {
+    margin-top: 7px;
+
+    font-size: 35px;
+}
+
+
+.login-description {
+    margin-top: 10px;
+
+    margin-bottom: 30px;
+
+    color: #94a3b8;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    background: #0b1120;
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.2);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.form-group input:focus {
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(56, 189, 248, 0.08);
+}
+
+
+.login-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    background: #38bdf8;
+
+    color: #0b1120;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.login-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(56, 189, 248, 0.2);
+}
+
+
+.back-link {
+    display: block;
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.back-link:hover {
+    color: #38bdf8;
+}
+
+
+/* =========================
+   FLASH MESSAGE
+========================= */
+
+.flash-message {
+    padding: 13px 15px;
+
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+
+    background:
+        rgba(56, 189, 248, 0.08);
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.25);
+
+    border-radius: 8px;
+}
+
+
+/* =========================
+   ADMIN NAVBAR
+========================= */
+
+.admin-navbar {
+    min-height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background:
+        rgba(11, 17, 32, 0.96);
+
+    border-bottom:
+        1px solid
+        rgba(148, 163, 184, 0.1);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.admin-nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.portfolio-link {
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.portfolio-link:hover {
+    color: #38bdf8;
+}
+
+
+.logout-button {
+    padding: 9px 18px;
+
+    border:
+        1px solid
+        rgba(248, 113, 113, 0.4);
+
+    border-radius: 7px;
+
+    color: #f87171;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.logout-button:hover {
+    background:
+        rgba(248, 113, 113, 0.1);
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    width: 86%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 70px 0;
+}
+
+
+.dashboard-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 40px;
+}
+
+
+.dashboard-header .admin-label {
+    margin-top: 0;
+}
+
+
+.dashboard-header h1 {
+    margin-top: 7px;
+
+    font-size: 40px;
+}
+
+
+.dashboard-description {
+    margin-top: 8px;
+
+    color: #94a3b8;
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+.message-counter {
+    min-width: 130px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: #111c30;
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.1);
+
+    border-radius: 12px;
+}
+
+
+.message-counter span {
+    display: block;
+
+    color: #38bdf8;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+.message-counter p {
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.messages-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+.message-card {
+    padding: 30px;
+
+    background: #111c30;
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.1);
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+
+.message-card:hover {
+    border-color:
+        rgba(56, 189, 248, 0.45);
+
+    transform: translateY(-3px);
+}
+
+
+.message-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.message-id {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #38bdf8;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.message-header h2 {
+    font-size: 23px;
+}
+
+
+/* =========================
+   SENDER
+========================= */
+
+.sender-information {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    background: #0b1120;
+
+    border-radius: 10px;
+}
+
+
+.sender-information span,
+.message-body span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.sender-information p {
+    color: #cbd5e1;
+}
+
+
+.sender-information a {
+    color: #38bdf8;
+}
+
+
+/* =========================
+   MESSAGE BODY
+========================= */
+
+.message-body {
+    margin-bottom: 25px;
+}
+
+
+.message-body p {
+    color: #cbd5e1;
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.reply-button {
+    display: inline-block;
+
+    color: #38bdf8;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.reply-button:hover {
+    transform: translateX(5px);
+}
+
+
+.delete-button {
+    padding: 8px 14px;
+
+    color: #f87171;
+
+    background: transparent;
+
+    border:
+        1px solid
+        rgba(248, 113, 113, 0.4);
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.delete-button:hover {
+    background:
+        rgba(248, 113, 113, 0.1);
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    padding: 70px 30px;
+
+    text-align: center;
+
+    background: #111c30;
+
+    border:
+        1px dashed
+        rgba(148, 163, 184, 0.2);
+
+    border-radius: 15px;
+}
+
+
+.empty-icon {
+    margin-bottom: 20px;
+
+    color: #38bdf8;
+
+    font-size: 45px;
+}
+
+
+.empty-state h2 {
+    margin-bottom: 10px;
+}
+
+
+.empty-state p {
+    color: #94a3b8;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .admin-navbar {
+        padding: 0 5%;
+    }
+
+
+    .portfolio-link {
+        display: none;
+    }
+
+
+    .dashboard {
+        width: 90%;
+
+        padding: 50px 0;
+    }
+
+
+    .dashboard-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 32px;
+    }
+
+
+    .message-counter {
+        width: 100%;
+    }
+
+
+    .sender-information {
+        grid-template-columns: 1fr;
+    }
+
+
+    .message-header {
+        flex-direction: column;
+    }
+
+
+    .login-card {
+        padding: 32px 25px;
+    }
+
+}

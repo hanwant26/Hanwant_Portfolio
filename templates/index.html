@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Portfolio of Hanwant Singh - Python Developer, Software Developer and Data Science Student.">
+
+    <title>
+        Hanwant Singh | Portfolio
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar" id="navbar">
+
+    <a href="#home" class="logo">
+        Hanwant<span>.</span>
+    </a>
+
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="#home" class="nav-link active">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#about" class="nav-link">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#skills" class="nav-link">
+                Skills
+            </a>
+        </li>
+
+        <li>
+            <a href="#projects" class="nav-link">
+                Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="#education" class="nav-link">
+                Education
+            </a>
+        </li>
+
+        <li>
+            <a href="#certifications" class="nav-link">
+                Certifications
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact" class="nav-link">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+
+    <!-- HAMBURGER BUTTON -->
+
+    <button class="menu-btn"
+            id="menuBtn"
+            aria-label="Open navigation menu">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <p class="hello">
+            Hello, I'm
+        </p>
+
+        <h1>
+            Hanwant Singh
+        </h1>
+
+        <h2>
+
+            I'm a
+
+            <span id="typing-text"></span>
+
+            <span class="cursor">|</span>
+
+        </h2>
+
+        <p class="hero-description">
+
+            MCA Data Science student and Python developer
+            focused on building practical web applications,
+            software projects and data-driven solutions.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="#projects"
+               class="btn primary-btn">
+
+                View Projects
+
+            </a>
+
+
+            <a href="{{ url_for('static', filename='resume/Hanwant_Singh_Resume.pdf') }}"
+               target="_blank"
+               class="btn secondary-btn">
+
+                View Resume
+
+            </a>
+
+        </div>
+
+
+        <div class="social-links">
+
+            <a href="https://github.com/hanwantsingh"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                GitHub
+
+            </a>
+
+            <a href="https://www.linkedin.com/in/hanwant-singh"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image reveal">
+
+        <div class="image-border">
+
+            <img
+                src="{{ url_for('static', filename='images/profile.jpg') }}"
+                alt="Portrait of Hanwant Singh">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about section"
+         id="about">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            Get To Know More
+        </p>
+
+        <h2>
+            About <span>Me</span>
+        </h2>
+
+    </div>
+
+
+    <div class="about-container">
+
+        <div class="about-card reveal">
+
+            <h3>
+                Who I Am
+            </h3>
+
+            <p>
+
+                I am a Computer Applications graduate currently
+                pursuing a Master's degree in Computer Applications
+                with a specialization in Data Science.
+
+            </p>
+
+            <p>
+
+                I enjoy building practical software solutions using
+                Python and developing web applications with frameworks
+                such as Flask and Django.
+
+            </p>
+
+            <p>
+
+                I am continuously strengthening my programming,
+                problem-solving and data skills through hands-on
+                projects and learning.
+
+            </p>
+
+        </div>
+
+
+        <div class="about-info">
+
+
+            <div class="info-card reveal">
+
+                <span class="info-number">
+                    BCA
+                </span>
+
+                <h3>
+                    Graduate
+                </h3>
+
+                <p>
+                    Computer Applications
+                </p>
+
+            </div>
+
+
+            <div class="info-card reveal">
+
+                <span class="info-number">
+                    MCA
+                </span>
+
+                <h3>
+                    Pursuing
+                </h3>
+
+                <p>
+                    Data Science
+                </p>
+
+            </div>
+
+
+            <div class="info-card reveal">
+
+                <span class="info-number">
+                    4+
+                </span>
+
+                <h3>
+                    Projects
+                </h3>
+
+                <p>
+                    Web & Data Projects
+                </p>
+
+            </div>
+
+
+            <div class="info-card reveal">
+
+                <span class="info-number">
+                    Python
+                </span>
+
+                <h3>
+                    Primary Language
+                </h3>
+
+                <p>
+                    Development & Data
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section class="skills section"
+         id="skills">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            What I Work With
+        </p>
+
+        <h2>
+            Technical <span>Skills</span>
+        </h2>
+
+    </div>
+
+
+    <div class="skills-container">
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                &lt;/&gt;
+            </div>
+
+            <h3>
+                Programming
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>Python</span>
+                <span>SQL</span>
+                <span>JavaScript</span>
+                <span>C++</span>
+                <span>Shell Scripting</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                WEB
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>Flask</span>
+                <span>Django</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>Bootstrap</span>
+                <span>REST APIs</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                DB
+            </div>
+
+            <h3>
+                Databases
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>MySQL</span>
+                <span>SQLite</span>
+                <span>SQL Queries</span>
+                <span>Database Design</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                DEV
+            </div>
+
+            <h3>
+                Tools & Platforms
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>Linux</span>
+                <span>VS Code</span>
+                <span>VirtualBox</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                DATA
+            </div>
+
+            <h3>
+                Data Fundamentals
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>Data Mining</span>
+                <span>Data Warehousing</span>
+                <span>Data Cleaning</span>
+                <span>Visualization</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card reveal">
+
+            <div class="skill-icon">
+                CS
+            </div>
+
+            <h3>
+                CS Fundamentals
+            </h3>
+
+            <div class="skill-tags">
+
+                <span>OOP</span>
+                <span>DBMS</span>
+                <span>DSA</span>
+                <span>Software Engineering</span>
+                <span>Operating Systems</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section class="projects section"
+         id="projects">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            My Work
+        </p>
+
+        <h2>
+            Featured <span>Projects</span>
+        </h2>
+
+    </div>
+
+
+    <div class="projects-container">
+
+
+        <!-- PROJECT 01 -->
+
+        <article class="project-card reveal">
+
+            <div class="project-number">
+                01
+            </div>
+
+            <p class="project-category">
+                Full Stack Application
+            </p>
+
+            <h3>
+                MeetVerse
+            </h3>
+
+            <p class="project-description">
+
+                Real-time video conferencing platform
+                developed using Python and Django with
+                room-based meetings and live communication.
+
+            </p>
+
+            <div class="project-features">
+
+                <p>✓ Real-time video meetings</p>
+                <p>✓ Persistent meeting chat</p>
+                <p>✓ Participant tracking</p>
+                <p>✓ Secure room creation</p>
+
+            </div>
+
+
+            <div class="project-tech">
+
+                <span>Python</span>
+                <span>Django</span>
+                <span>LiveKit</span>
+                <span>SQLite</span>
+                <span>JavaScript</span>
+
+            </div>
+
+
+            <a href="https://github.com/hanwantsingh"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="project-btn">
+
+                View on GitHub →
+
+            </a>
+
+        </article>
+
+
+        <!-- PROJECT 02 -->
+
+        <article class="project-card reveal">
+
+            <div class="project-number">
+                02
+            </div>
+
+            <p class="project-category">
+                Learning Management System
+            </p>
+
+            <h3>
+                EduVerse LMS
+            </h3>
+
+            <p class="project-description">
+
+                Role-based learning management platform
+                built for teachers and students with courses,
+                assignments, quizzes and academic content.
+
+            </p>
+
+            <div class="project-features">
+
+                <p>✓ Teacher & student dashboards</p>
+                <p>✓ Course management</p>
+                <p>✓ Assignment submissions</p>
+                <p>✓ Quiz and result system</p>
+
+            </div>
+
+
+            <div class="project-tech">
+
+                <span>Python</span>
+                <span>Flask</span>
+                <span>MySQL</span>
+                <span>Bootstrap</span>
+                <span>JavaScript</span>
+
+            </div>
+
+
+            <a href="https://github.com/hanwantsingh"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="project-btn">
+
+                View on GitHub →
+
+            </a>
+
+        </article>
+
+
+        <!-- PROJECT 03 -->
+
+        <article class="project-card reveal">
+
+            <div class="project-number">
+                03
+            </div>
+
+            <p class="project-category">
+                Data Analysis
+            </p>
+
+            <h3>
+                Retail Sales Analysis
+            </h3>
+
+            <p class="project-description">
+
+                Python-based data analysis project covering
+                data cleaning, missing values, outlier handling
+                and visualization of retail sales patterns.
+
+            </p>
+
+
+            <div class="project-features">
+
+                <p>✓ Data preprocessing</p>
+                <p>✓ Missing-value analysis</p>
+                <p>✓ Outlier handling</p>
+                <p>✓ Business visualizations</p>
+
+            </div>
+
+
+            <div class="project-tech">
+
+                <span>Python</span>
+                <span>Pandas</span>
+                <span>Matplotlib</span>
+                <span>CSV</span>
+
+            </div>
+
+
+            <a href="https://github.com/hanwantsingh"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="project-btn">
+
+                View on GitHub →
+
+            </a>
+
+        </article>
+
+
+        <!-- PROJECT 04 -->
+
+        <article class="project-card reveal">
+
+            <div class="project-number">
+                04
+            </div>
+
+            <p class="project-category">
+                Machine Learning
+            </p>
+
+            <h3>
+                Predictive Modeling
+            </h3>
+
+            <p class="project-description">
+
+                Classification project comparing different
+                machine-learning models and evaluating their
+                predictive performance.
+
+            </p>
+
+
+            <div class="project-features">
+
+                <p>✓ Data preprocessing</p>
+                <p>✓ Model training</p>
+                <p>✓ Model comparison</p>
+                <p>✓ Performance evaluation</p>
+
+            </div>
+
+
+            <div class="project-tech">
+
+                <span>Python</span>
+                <span>Pandas</span>
+                <span>Scikit-learn</span>
+                <span>Machine Learning</span>
+
+            </div>
+
+
+            <a href="https://github.com/hanwantsingh"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="project-btn">
+
+                View on GitHub →
+
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EDUCATION
+========================= -->
+
+<section class="education section"
+         id="education">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            Academic Journey
+        </p>
+
+        <h2>
+            My <span>Education</span>
+        </h2>
+
+    </div>
+
+
+    <div class="education-container">
+
+
+        <div class="education-card reveal">
+
+            <div class="education-year">
+                2026 — Present
+            </div>
+
+            <div class="education-content">
+
+                <span class="education-status">
+                    Currently Pursuing
+                </span>
+
+                <h3>
+                    Master of Computer Applications
+                </h3>
+
+                <h4>
+                    Data Science
+                </h4>
+
+                <p class="institution">
+                    Lovely Professional University
+                </p>
+
+                <p>
+
+                    Building stronger foundations in Data Science,
+                    programming, data management and modern
+                    computing concepts.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="education-card reveal">
+
+            <div class="education-year">
+                2022 — 2025
+            </div>
+
+            <div class="education-content">
+
+                <span class="education-status completed">
+                    Completed
+                </span>
+
+                <h3>
+                    Bachelor of Computer Applications
+                </h3>
+
+                <h4>
+                    BCA (Science)
+                </h4>
+
+                <p class="institution">
+
+                    Progressive Education Society's
+                    Modern College of Arts, Science and Commerce,
+                    Pune
+
+                </p>
+
+                <p>
+
+                    Developed foundations in programming,
+                    databases, software development and computer
+                    science while completing practical projects.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CERTIFICATIONS
+========================= -->
+
+<section class="certifications section"
+         id="certifications">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            Continuous Learning
+        </p>
+
+        <h2>
+            My <span>Certifications</span>
+        </h2>
+
+    </div>
+
+
+    <div class="certification-container">
+
+        <div class="certification-empty reveal">
+
+            <div class="certification-icon">
+                +
+            </div>
+
+            <h3>
+                Certifications Coming Soon
+            </h3>
+
+            <p>
+
+                Professional certifications and completed
+                courses will be added here as I continue
+                expanding my technical skills.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact section"
+         id="contact">
+
+    <div class="section-heading reveal">
+
+        <p class="section-small-title">
+            Let's Connect
+        </p>
+
+        <h2>
+            Contact <span>Me</span>
+        </h2>
+
+    </div>
+
+
+    <div class="contact-container">
+
+
+        <div class="contact-info reveal">
+
+            <h3>
+                Let's Work Together
+            </h3>
+
+            <p>
+
+                I'm interested in opportunities related to
+                Python development, software development
+                and data-focused roles.
+
+            </p>
+
+
+            <div class="contact-detail">
+
+                <span>
+                    Email
+                </span>
+
+                <a href="mailto:singhhanwant325@gmail.com">
+
+                    singhhanwant325@gmail.com
+
+                </a>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <span>
+                    GitHub
+                </span>
+
+                <a href="https://github.com/hanwantsingh"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    github.com/hanwantsingh
+
+                </a>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <span>
+                    LinkedIn
+                </span>
+
+                <a href="https://www.linkedin.com/in/hanwant-singh"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    linkedin.com/in/hanwant-singh
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-form-container reveal">
+
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="flash-message">
+
+                            {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form action="{{ url_for('contact') }}"
+                  method="POST"
+                  class="contact-form">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="What is this about?"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn">
+
+                    Send Message
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+            Hanwant<span>.</span>
+        </div>
+
+        <p>
+            Designed & developed with Python + Flask.
+        </p>
+
+        <p class="copyright">
+            © 2026 Hanwant Singh. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+
+<button id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top">
+
+    ↑
+
+</button>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
