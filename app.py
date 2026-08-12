@@ -15,6 +15,9 @@ from flask_limiter.util import get_remote_address
 
 from werkzeug.security import check_password_hash
 
+from psycopg.rows import dict_row
+
+import psycopg
 import sqlite3
 import os
 import re
@@ -42,27 +45,63 @@ app = Flask(__name__)
 # =========================
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
-ADMIN_PASSWORD_HASH = os.getenv("ADMIN_PASSWORD_HASH")
+
+ADMIN_USERNAME = os.getenv(
+    "ADMIN_USERNAME"
+)
+
+ADMIN_PASSWORD_HASH = os.getenv(
+    "ADMIN_PASSWORD_HASH"
+)
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL"
+)
 
 
 if not SECRET_KEY:
+
     raise RuntimeError(
-        "SECRET_KEY is missing from the .env file."
+        "SECRET_KEY is missing."
     )
+
 
 if not ADMIN_USERNAME:
+
     raise RuntimeError(
-        "ADMIN_USERNAME is missing from the .env file."
+        "ADMIN_USERNAME is missing."
     )
 
+
 if not ADMIN_PASSWORD_HASH:
+
     raise RuntimeError(
-        "ADMIN_PASSWORD_HASH is missing from the .env file."
+        "ADMIN_PASSWORD_HASH is missing."
     )
 
 
 app.secret_key = SECRET_KEY
+
+
+# =========================
+# DATABASE MODE
+# =========================
+
+# If DATABASE_URL exists:
+#     PostgreSQL will be used.
+#
+# If DATABASE_URL does not exist:
+#     SQLite will be used.
+
+USE_POSTGRES = bool(
+    DATABASE_URL
+)
+
+
+SQLITE_DATABASE = os.path.join(
+    app.root_path,
+    "portfolio.db"
+)
 
 
 # =========================
@@ -93,29 +132,59 @@ limiter = Limiter(
 # SESSION SECURITY
 # =========================
 
-app.config["SESSION_COOKIE_HTTPONLY"] = True
-
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-
-# Keep False while using localhost.
-# Change to True after HTTPS deployment.
-app.config["SESSION_COOKIE_SECURE"] = False
+app.config[
+    "SESSION_COOKIE_HTTPONLY"
+] = True
 
 
-# =========================
-# DATABASE
-# =========================
+app.config[
+    "SESSION_COOKIE_SAMESITE"
+] = "Lax"
 
-DATABASE = os.path.join(
-    app.root_path,
-    "portfolio.db"
+
+# Locally:
+# SESSION_COOKIE_SECURE=0
+#
+# Production:
+# SESSION_COOKIE_SECURE=1
+
+app.config[
+    "SESSION_COOKIE_SECURE"
+] = (
+    os.getenv(
+        "SESSION_COOKIE_SECURE",
+        "0"
+    )
+    == "1"
 )
 
 
+# =========================
+# DATABASE CONNECTION
+# =========================
+
 def get_database_connection():
 
+    # -------------------------
+    # POSTGRESQL
+    # -------------------------
+
+    if USE_POSTGRES:
+
+        connection = psycopg.connect(
+            DATABASE_URL,
+            row_factory=dict_row
+        )
+
+        return connection
+
+
+    # -------------------------
+    # SQLITE
+    # -------------------------
+
     connection = sqlite3.connect(
-        DATABASE
+        SQLITE_DATABASE
     )
 
     connection.row_factory = (
@@ -125,29 +194,67 @@ def get_database_connection():
     return connection
 
 
+# =========================
+# CREATE DATABASE TABLE
+# =========================
+
 def create_database():
 
     connection = (
         get_database_connection()
     )
 
-    cursor = connection.cursor()
 
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            subject TEXT NOT NULL,
-            message TEXT NOT NULL
-        )
-        """
-    )
+    try:
 
-    connection.commit()
+        # =====================
+        # POSTGRESQL TABLE
+        # =====================
 
-    connection.close()
+        if USE_POSTGRES:
+
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS messages (
+                    id BIGSERIAL PRIMARY KEY,
+                    name VARCHAR(100) NOT NULL,
+                    email VARCHAR(150) NOT NULL,
+                    subject VARCHAR(150) NOT NULL,
+                    message TEXT NOT NULL,
+                    created_at TIMESTAMP
+                        DEFAULT CURRENT_TIMESTAMP
+                )
+                """
+            )
+
+
+        # =====================
+        # SQLITE TABLE
+        # =====================
+
+        else:
+
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS messages (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    subject TEXT NOT NULL,
+                    message TEXT NOT NULL,
+                    created_at TIMESTAMP
+                        DEFAULT CURRENT_TIMESTAMP
+                )
+                """
+            )
+
+
+        connection.commit()
+
+
+    finally:
+
+        connection.close()
 
 
 create_database()
@@ -165,6 +272,7 @@ def is_valid_email(email):
         r"\.[A-Za-z]{2,}$"
     )
 
+
     return re.match(
         pattern,
         email
@@ -172,7 +280,7 @@ def is_valid_email(email):
 
 
 # =========================
-# ADMIN LOGIN DECORATOR
+# LOGIN REQUIRED
 # =========================
 
 def login_required(function):
@@ -192,16 +300,19 @@ def login_required(function):
                 "the admin dashboard."
             )
 
+
             return redirect(
                 url_for(
                     "admin_login"
                 )
             )
 
+
         return function(
             *args,
             **kwargs
         )
+
 
     return decorated_function
 
@@ -236,15 +347,18 @@ def contact():
         ""
     ).strip()
 
+
     email = request.form.get(
         "email",
         ""
     ).strip()
 
+
     subject = request.form.get(
         "subject",
         ""
     ).strip()
+
 
     message = request.form.get(
         "message",
@@ -267,6 +381,7 @@ def contact():
             "Please fill in all fields."
         )
 
+
         return redirect(
             url_for("home")
             + "#contact"
@@ -283,6 +398,7 @@ def contact():
             "Name is too long."
         )
 
+
         return redirect(
             url_for("home")
             + "#contact"
@@ -295,6 +411,7 @@ def contact():
             "Email address is too long."
         )
 
+
         return redirect(
             url_for("home")
             + "#contact"
@@ -306,6 +423,7 @@ def contact():
         flash(
             "Subject is too long."
         )
+
 
         return redirect(
             url_for("home")
@@ -320,6 +438,7 @@ def contact():
             "2000 characters."
         )
 
+
         return redirect(
             url_for("home")
             + "#contact"
@@ -330,12 +449,15 @@ def contact():
     # EMAIL VALIDATION
     # =========================
 
-    if not is_valid_email(email):
+    if not is_valid_email(
+        email
+    ):
 
         flash(
             "Please enter a valid "
             "email address."
         )
+
 
         return redirect(
             url_for("home")
@@ -351,31 +473,75 @@ def contact():
         get_database_connection()
     )
 
-    cursor = connection.cursor()
+
+    try:
+
+        # ---------------------
+        # POSTGRESQL
+        # ---------------------
+
+        if USE_POSTGRES:
+
+            connection.execute(
+                """
+                INSERT INTO messages (
+                    name,
+                    email,
+                    subject,
+                    message
+                )
+                VALUES (
+                    %s,
+                    %s,
+                    %s,
+                    %s
+                )
+                """,
+                (
+                    name,
+                    email,
+                    subject,
+                    message
+                )
+            )
 
 
-    cursor.execute(
-        """
-        INSERT INTO messages (
-            name,
-            email,
-            subject,
-            message
-        )
-        VALUES (?, ?, ?, ?)
-        """,
-        (
-            name,
-            email,
-            subject,
-            message
-        )
-    )
+        # ---------------------
+        # SQLITE
+        # ---------------------
+
+        else:
+
+            connection.execute(
+                """
+                INSERT INTO messages (
+                    name,
+                    email,
+                    subject,
+                    message
+                )
+                VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?
+                )
+                """,
+                (
+                    name,
+                    email,
+                    subject,
+                    message
+                )
+            )
 
 
-    connection.commit()
+        connection.commit()
 
-    connection.close()
+
+    finally:
+
+        connection.close()
 
 
     flash(
@@ -422,6 +588,7 @@ def admin_login():
             ""
         ).strip()
 
+
         password = request.form.get(
             "password",
             ""
@@ -449,9 +616,11 @@ def admin_login():
 
             session.clear()
 
+
             session[
                 "admin_logged_in"
             ] = True
+
 
             session[
                 "admin_username"
@@ -494,16 +663,29 @@ def admin_dashboard():
     )
 
 
-    messages = connection.execute(
-        """
-        SELECT *
-        FROM messages
-        ORDER BY id DESC
-        """
-    ).fetchall()
+    try:
+
+        messages = (
+            connection.execute(
+                """
+                SELECT
+                    id,
+                    name,
+                    email,
+                    subject,
+                    message,
+                    created_at
+                FROM messages
+                ORDER BY id DESC
+                """
+            )
+            .fetchall()
+        )
 
 
-    connection.close()
+    finally:
+
+        connection.close()
 
 
     return render_template(
@@ -521,25 +703,57 @@ def admin_dashboard():
     methods=["POST"]
 )
 @login_required
-def delete_message(message_id):
+def delete_message(
+    message_id
+):
 
     connection = (
         get_database_connection()
     )
 
 
-    connection.execute(
-        """
-        DELETE FROM messages
-        WHERE id = ?
-        """,
-        (message_id,)
-    )
+    try:
+
+        # ---------------------
+        # POSTGRESQL
+        # ---------------------
+
+        if USE_POSTGRES:
+
+            connection.execute(
+                """
+                DELETE FROM messages
+                WHERE id = %s
+                """,
+                (
+                    message_id,
+                )
+            )
 
 
-    connection.commit()
+        # ---------------------
+        # SQLITE
+        # ---------------------
 
-    connection.close()
+        else:
+
+            connection.execute(
+                """
+                DELETE FROM messages
+                WHERE id = ?
+                """,
+                (
+                    message_id,
+                )
+            )
+
+
+        connection.commit()
+
+
+    finally:
+
+        connection.close()
 
 
     flash(
@@ -585,7 +799,9 @@ def admin_logout():
 # =========================
 
 @app.errorhandler(429)
-def rate_limit_exceeded(error):
+def rate_limit_exceeded(
+    error
+):
 
     return render_template(
         "429.html"
@@ -602,7 +818,20 @@ if __name__ == "__main__":
         os.getenv(
             "FLASK_DEBUG",
             "0"
-        ) == "1"
+        )
+        == "1"
+    )
+
+
+    database_name = (
+        "PostgreSQL"
+        if USE_POSTGRES
+        else "SQLite"
+    )
+
+
+    print(
+        f"Database: {database_name}"
     )
 
 
