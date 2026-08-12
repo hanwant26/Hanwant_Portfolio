@@ -71,6 +71,7 @@ function typingAnimation() {
         typingAnimation,
         speed
     );
+
 }
 
 
@@ -100,7 +101,9 @@ menuBtn.addEventListener(
 );
 
 
-// CLOSE MENU AFTER CLICKING LINK
+// =========================
+// CLOSE MOBILE MENU
+// =========================
 
 document
     .querySelectorAll(".nav-link")
@@ -192,7 +195,7 @@ revealElements.forEach(
 
 
 // =========================
-// ACTIVE NAV LINK
+// ACTIVE NAVIGATION
 // =========================
 
 const sections =

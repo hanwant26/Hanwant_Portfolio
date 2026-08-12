@@ -15,10 +15,16 @@
         Hanwant Singh | Portfolio
     </title>
 
+    <!-- MAIN CSS -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
@@ -37,43 +43,50 @@
     <ul class="nav-links" id="navLinks">
 
         <li>
-            <a href="#home" class="nav-link active">
+            <a href="#home"
+               class="nav-link active">
                 Home
             </a>
         </li>
 
         <li>
-            <a href="#about" class="nav-link">
+            <a href="#about"
+               class="nav-link">
                 About
             </a>
         </li>
 
         <li>
-            <a href="#skills" class="nav-link">
+            <a href="#skills"
+               class="nav-link">
                 Skills
             </a>
         </li>
 
         <li>
-            <a href="#projects" class="nav-link">
+            <a href="#projects"
+               class="nav-link">
                 Projects
             </a>
         </li>
 
         <li>
-            <a href="#education" class="nav-link">
+            <a href="#education"
+               class="nav-link">
                 Education
             </a>
         </li>
 
         <li>
-            <a href="#certifications" class="nav-link">
+            <a href="#certifications"
+               class="nav-link">
                 Certifications
             </a>
         </li>
 
         <li>
-            <a href="#contact" class="nav-link">
+            <a href="#contact"
+               class="nav-link">
                 Contact
             </a>
         </li>
@@ -81,7 +94,7 @@
     </ul>
 
 
-    <!-- HAMBURGER BUTTON -->
+    <!-- MOBILE MENU -->
 
     <button class="menu-btn"
             id="menuBtn"
@@ -102,15 +115,18 @@
 
 <section class="hero" id="home">
 
+
     <div class="hero-content reveal">
 
         <p class="hello">
             Hello, I'm
         </p>
 
+
         <h1>
             Hanwant Singh
         </h1>
+
 
         <h2>
 
@@ -121,6 +137,7 @@
             <span class="cursor">|</span>
 
         </h2>
+
 
         <p class="hero-description">
 
@@ -136,6 +153,8 @@
             <a href="#projects"
                class="btn primary-btn">
 
+                <i class="fa-solid fa-code"></i>
+
                 View Projects
 
             </a>
@@ -144,6 +163,8 @@
             <a href="{{ url_for('static', filename='resume/Hanwant_Singh_Resume.pdf') }}"
                target="_blank"
                class="btn secondary-btn">
+
+                <i class="fa-solid fa-file-lines"></i>
 
                 View Resume
 
@@ -158,13 +179,18 @@
                target="_blank"
                rel="noopener noreferrer">
 
+                <i class="fa-brands fa-github"></i>
+
                 GitHub
 
             </a>
 
+
             <a href="https://www.linkedin.com/in/hanwant-singh"
                target="_blank"
                rel="noopener noreferrer">
+
+                <i class="fa-brands fa-linkedin"></i>
 
                 LinkedIn
 
@@ -174,6 +200,8 @@
 
     </div>
 
+
+    <!-- PROFILE IMAGE -->
 
     <div class="hero-image reveal">
 
@@ -212,11 +240,13 @@
 
     <div class="about-container">
 
+
         <div class="about-card reveal">
 
             <h3>
                 Who I Am
             </h3>
+
 
             <p>
 
@@ -226,6 +256,7 @@
 
             </p>
 
+
             <p>
 
                 I enjoy building practical software solutions using
@@ -234,11 +265,12 @@
 
             </p>
 
+
             <p>
 
                 I am continuously strengthening my programming,
                 problem-solving and data skills through hands-on
-                projects and learning.
+                projects and continuous learning.
 
             </p>
 
@@ -248,7 +280,15 @@
         <div class="about-info">
 
 
+            <!-- BCA -->
+
             <div class="info-card reveal">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
 
                 <span class="info-number">
                     BCA
@@ -265,7 +305,15 @@
             </div>
 
 
+            <!-- MCA -->
+
             <div class="info-card reveal">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                </div>
 
                 <span class="info-number">
                     MCA
@@ -282,24 +330,40 @@
             </div>
 
 
+            <!-- PROJECT -->
+
             <div class="info-card reveal">
 
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-laptop-code"></i>
+
+                </div>
+
                 <span class="info-number">
-                    4+
+                    1+
                 </span>
 
                 <h3>
-                    Projects
+                    Featured Project
                 </h3>
 
                 <p>
-                    Web & Data Projects
+                    More In Development
                 </p>
 
             </div>
 
 
+            <!-- PYTHON -->
+
             <div class="info-card reveal">
+
+                <div class="info-icon">
+
+                    <i class="fa-brands fa-python"></i>
+
+                </div>
 
                 <span class="info-number">
                     Python
@@ -345,10 +409,14 @@
     <div class="skills-container">
 
 
+        <!-- PROGRAMMING -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                &lt;/&gt;
+
+                <i class="fa-solid fa-code"></i>
+
             </div>
 
             <h3>
@@ -357,21 +425,41 @@
 
             <div class="skill-tags">
 
-                <span>Python</span>
-                <span>SQL</span>
-                <span>JavaScript</span>
-                <span>C++</span>
-                <span>Shell Scripting</span>
+                <span>
+                    <i class="fa-brands fa-python"></i>
+                    Python
+                </span>
+
+                <span>
+                    SQL
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-js"></i>
+                    JavaScript
+                </span>
+
+                <span>
+                    C++
+                </span>
+
+                <span>
+                    Shell Scripting
+                </span>
 
             </div>
 
         </div>
 
 
+        <!-- WEB DEVELOPMENT -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                WEB
+
+                <i class="fa-solid fa-globe"></i>
+
             </div>
 
             <h3>
@@ -381,21 +469,41 @@
             <div class="skill-tags">
 
                 <span>Flask</span>
+
                 <span>Django</span>
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>Bootstrap</span>
-                <span>REST APIs</span>
+
+                <span>
+                    <i class="fa-brands fa-html5"></i>
+                    HTML5
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-css3-alt"></i>
+                    CSS3
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-bootstrap"></i>
+                    Bootstrap
+                </span>
+
+                <span>
+                    REST APIs
+                </span>
 
             </div>
 
         </div>
 
 
+        <!-- DATABASES -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                DB
+
+                <i class="fa-solid fa-database"></i>
+
             </div>
 
             <h3>
@@ -405,8 +513,11 @@
             <div class="skill-tags">
 
                 <span>MySQL</span>
+
                 <span>SQLite</span>
+
                 <span>SQL Queries</span>
+
                 <span>Database Design</span>
 
             </div>
@@ -414,10 +525,14 @@
         </div>
 
 
+        <!-- TOOLS -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                DEV
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
             </div>
 
             <h3>
@@ -426,21 +541,42 @@
 
             <div class="skill-tags">
 
-                <span>Git</span>
-                <span>GitHub</span>
-                <span>Linux</span>
-                <span>VS Code</span>
-                <span>VirtualBox</span>
+                <span>
+                    <i class="fa-brands fa-git-alt"></i>
+                    Git
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-github"></i>
+                    GitHub
+                </span>
+
+                <span>
+                    <i class="fa-brands fa-linux"></i>
+                    Linux
+                </span>
+
+                <span>
+                    VS Code
+                </span>
+
+                <span>
+                    VirtualBox
+                </span>
 
             </div>
 
         </div>
 
 
+        <!-- DATA -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                DATA
+
+                <i class="fa-solid fa-chart-line"></i>
+
             </div>
 
             <h3>
@@ -450,8 +586,11 @@
             <div class="skill-tags">
 
                 <span>Data Mining</span>
+
                 <span>Data Warehousing</span>
+
                 <span>Data Cleaning</span>
+
                 <span>Visualization</span>
 
             </div>
@@ -459,10 +598,14 @@
         </div>
 
 
+        <!-- COMPUTER SCIENCE -->
+
         <div class="skill-card reveal">
 
             <div class="skill-icon">
-                CS
+
+                <i class="fa-solid fa-microchip"></i>
+
             </div>
 
             <h3>
@@ -472,9 +615,13 @@
             <div class="skill-tags">
 
                 <span>OOP</span>
+
                 <span>DBMS</span>
+
                 <span>DSA</span>
+
                 <span>Software Engineering</span>
+
                 <span>Operating Systems</span>
 
             </div>
@@ -509,7 +656,10 @@
     <div class="projects-container">
 
 
-        <!-- PROJECT 01 -->
+        <!-- =========================
+             PROJECT 01
+             MEETVERSE
+        ========================= -->
 
         <article class="project-card reveal">
 
@@ -517,28 +667,60 @@
                 01
             </div>
 
+
+            <div class="project-top-icon">
+
+                <i class="fa-solid fa-video"></i>
+
+            </div>
+
+
             <p class="project-category">
-                Full Stack Application
+                Full Stack Web Application
             </p>
+
 
             <h3>
                 MeetVerse
             </h3>
 
+
             <p class="project-description">
 
-                Real-time video conferencing platform
-                developed using Python and Django with
-                room-based meetings and live communication.
+                A real-time video conferencing platform built
+                using Python and Django. MeetVerse provides
+                room-based video communication with meeting
+                management and interactive collaboration features.
 
             </p>
 
+
             <div class="project-features">
 
-                <p>✓ Real-time video meetings</p>
-                <p>✓ Persistent meeting chat</p>
-                <p>✓ Participant tracking</p>
-                <p>✓ Secure room creation</p>
+                <p>
+                    <i class="fa-solid fa-check"></i>
+                    Real-time video conferencing
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-check"></i>
+                    Persistent meeting chat
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-check"></i>
+                    Dynamic participant tracking
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-check"></i>
+                    Live meeting timer
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-check"></i>
+                    Secure room creation
+                </p>
 
             </div>
 
@@ -546,10 +728,18 @@
             <div class="project-tech">
 
                 <span>Python</span>
+
                 <span>Django</span>
+
                 <span>LiveKit</span>
+
                 <span>SQLite</span>
+
                 <span>JavaScript</span>
+
+                <span>HTML5</span>
+
+                <span>CSS3</span>
 
             </div>
 
@@ -559,43 +749,81 @@
                rel="noopener noreferrer"
                class="project-btn">
 
-                View on GitHub →
+                <i class="fa-brands fa-github"></i>
+
+                View on GitHub
+
+                <i class="fa-solid fa-arrow-right"></i>
 
             </a>
 
         </article>
 
 
-        <!-- PROJECT 02 -->
+        <!-- =========================
+             PROJECT 02
+             IN DEVELOPMENT
+        ========================= -->
 
-        <article class="project-card reveal">
+        <article class="project-card upcoming-project reveal">
 
             <div class="project-number">
                 02
             </div>
 
+
+            <div class="project-top-icon">
+
+                <i class="fa-solid fa-code-branch"></i>
+
+            </div>
+
+
             <p class="project-category">
-                Learning Management System
+                In Development
             </p>
 
+
             <h3>
-                EduVerse LMS
+                New Project Coming Soon
             </h3>
+
 
             <p class="project-description">
 
-                Role-based learning management platform
-                built for teachers and students with courses,
-                assignments, quizzes and academic content.
+                I'm currently working on a new software project
+                focused on solving a practical problem using
+                Python and modern development technologies.
 
             </p>
 
+
             <div class="project-features">
 
-                <p>✓ Teacher & student dashboards</p>
-                <p>✓ Course management</p>
-                <p>✓ Assignment submissions</p>
-                <p>✓ Quiz and result system</p>
+                <p>
+                    <i class="fa-solid fa-spinner"></i>
+                    Currently in development
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Focused on practical problem solving
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-code"></i>
+                    Python-based development
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-layer-group"></i>
+                    Modern application architecture
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    More details coming soon
+                </p>
 
             </div>
 
@@ -603,138 +831,48 @@
             <div class="project-tech">
 
                 <span>Python</span>
-                <span>Flask</span>
-                <span>MySQL</span>
-                <span>Bootstrap</span>
-                <span>JavaScript</span>
+
+                <span>In Development</span>
+
+                <span>Coming Soon</span>
 
             </div>
 
 
-            <a href="https://github.com/hanwantsingh"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="project-btn">
+            <div class="project-progress">
 
-                View on GitHub →
+                <div class="progress-header">
 
-            </a>
+                    <span>
+                        Development Status
+                    </span>
+
+                    <span>
+                        In Progress
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-btn coming-project">
+
+                <i class="fa-solid fa-hourglass-half"></i>
+
+                Project In Progress
+
+            </div>
 
         </article>
 
-
-        <!-- PROJECT 03 -->
-
-        <article class="project-card reveal">
-
-            <div class="project-number">
-                03
-            </div>
-
-            <p class="project-category">
-                Data Analysis
-            </p>
-
-            <h3>
-                Retail Sales Analysis
-            </h3>
-
-            <p class="project-description">
-
-                Python-based data analysis project covering
-                data cleaning, missing values, outlier handling
-                and visualization of retail sales patterns.
-
-            </p>
-
-
-            <div class="project-features">
-
-                <p>✓ Data preprocessing</p>
-                <p>✓ Missing-value analysis</p>
-                <p>✓ Outlier handling</p>
-                <p>✓ Business visualizations</p>
-
-            </div>
-
-
-            <div class="project-tech">
-
-                <span>Python</span>
-                <span>Pandas</span>
-                <span>Matplotlib</span>
-                <span>CSV</span>
-
-            </div>
-
-
-            <a href="https://github.com/hanwantsingh"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="project-btn">
-
-                View on GitHub →
-
-            </a>
-
-        </article>
-
-
-        <!-- PROJECT 04 -->
-
-        <article class="project-card reveal">
-
-            <div class="project-number">
-                04
-            </div>
-
-            <p class="project-category">
-                Machine Learning
-            </p>
-
-            <h3>
-                Predictive Modeling
-            </h3>
-
-            <p class="project-description">
-
-                Classification project comparing different
-                machine-learning models and evaluating their
-                predictive performance.
-
-            </p>
-
-
-            <div class="project-features">
-
-                <p>✓ Data preprocessing</p>
-                <p>✓ Model training</p>
-                <p>✓ Model comparison</p>
-                <p>✓ Performance evaluation</p>
-
-            </div>
-
-
-            <div class="project-tech">
-
-                <span>Python</span>
-                <span>Pandas</span>
-                <span>Scikit-learn</span>
-                <span>Machine Learning</span>
-
-            </div>
-
-
-            <a href="https://github.com/hanwantsingh"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="project-btn">
-
-                View on GitHub →
-
-            </a>
-
-        </article>
 
     </div>
 
@@ -764,11 +902,18 @@
     <div class="education-container">
 
 
+        <!-- MCA -->
+
         <div class="education-card reveal">
 
             <div class="education-year">
+
+                <i class="fa-solid fa-calendar"></i>
+
                 2026 — Present
+
             </div>
+
 
             <div class="education-content">
 
@@ -785,7 +930,11 @@
                 </h4>
 
                 <p class="institution">
+
+                    <i class="fa-solid fa-building-columns"></i>
+
                     Lovely Professional University
+
                 </p>
 
                 <p>
@@ -801,11 +950,18 @@
         </div>
 
 
+        <!-- BCA -->
+
         <div class="education-card reveal">
 
             <div class="education-year">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
                 2022 — 2025
+
             </div>
+
 
             <div class="education-content">
 
@@ -823,6 +979,8 @@
 
                 <p class="institution">
 
+                    <i class="fa-solid fa-building-columns"></i>
+
                     Progressive Education Society's
                     Modern College of Arts, Science and Commerce,
                     Pune
@@ -832,8 +990,9 @@
                 <p>
 
                     Developed foundations in programming,
-                    databases, software development and computer
-                    science while completing practical projects.
+                    databases, software development and
+                    computer science while completing
+                    practical projects.
 
                 </p>
 
@@ -871,7 +1030,9 @@
         <div class="certification-empty reveal">
 
             <div class="certification-icon">
-                +
+
+                <i class="fa-solid fa-certificate"></i>
+
             </div>
 
             <h3>
@@ -916,6 +1077,8 @@
     <div class="contact-container">
 
 
+        <!-- CONTACT INFO -->
+
         <div class="contact-info reveal">
 
             <h3>
@@ -931,56 +1094,94 @@
             </p>
 
 
+            <!-- EMAIL -->
+
             <div class="contact-detail">
 
-                <span>
-                    Email
-                </span>
+                <div class="contact-icon">
 
-                <a href="mailto:singhhanwant325@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
 
-                    singhhanwant325@gmail.com
+                </div>
 
-                </a>
+                <div>
+
+                    <span>
+                        Email
+                    </span>
+
+                    <a href="mailto:singhhanwant325@gmail.com">
+
+                        singhhanwant325@gmail.com
+
+                    </a>
+
+                </div>
 
             </div>
 
 
+            <!-- GITHUB -->
+
             <div class="contact-detail">
 
-                <span>
-                    GitHub
-                </span>
+                <div class="contact-icon">
 
-                <a href="https://github.com/hanwantsingh"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
 
-                    github.com/hanwantsingh
+                </div>
 
-                </a>
+                <div>
+
+                    <span>
+                        GitHub
+                    </span>
+
+                    <a href="https://github.com/hanwantsingh"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        github.com/hanwantsingh
+
+                    </a>
+
+                </div>
 
             </div>
 
 
+            <!-- LINKEDIN -->
+
             <div class="contact-detail">
 
-                <span>
-                    LinkedIn
-                </span>
+                <div class="contact-icon">
 
-                <a href="https://www.linkedin.com/in/hanwant-singh"
-                   target="_blank"
-                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin"></i>
 
-                    linkedin.com/in/hanwant-singh
+                </div>
 
-                </a>
+                <div>
+
+                    <span>
+                        LinkedIn
+                    </span>
+
+                    <a href="https://www.linkedin.com/in/hanwant-singh"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        linkedin.com/in/hanwant-singh
+
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
 
+
+        <!-- CONTACT FORM -->
 
         <div class="contact-form-container reveal">
 
@@ -1012,7 +1213,11 @@
                 <div class="form-group">
 
                     <label for="name">
+
+                        <i class="fa-solid fa-user"></i>
+
                         Your Name
+
                     </label>
 
                     <input
@@ -1028,7 +1233,11 @@
                 <div class="form-group">
 
                     <label for="email">
+
+                        <i class="fa-solid fa-envelope"></i>
+
                         Email Address
+
                     </label>
 
                     <input
@@ -1044,7 +1253,11 @@
                 <div class="form-group">
 
                     <label for="subject">
+
+                        <i class="fa-solid fa-tag"></i>
+
                         Subject
+
                     </label>
 
                     <input
@@ -1060,7 +1273,11 @@
                 <div class="form-group">
 
                     <label for="message">
+
+                        <i class="fa-solid fa-message"></i>
+
                         Message
+
                     </label>
 
                     <textarea
@@ -1076,6 +1293,8 @@
                 <button
                     type="submit"
                     class="submit-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
 
                     Send Message
 
@@ -1099,15 +1318,28 @@
     <div class="footer-content">
 
         <div class="footer-logo">
+
             Hanwant<span>.</span>
+
         </div>
 
+
         <p>
-            Designed & developed with Python + Flask.
+
+            Designed & developed with
+
+            <i class="fa-brands fa-python"></i>
+
+            Python + Flask.
+
         </p>
 
+
         <p class="copyright">
-            © 2026 Hanwant Singh. All rights reserved.
+
+            © 2026 Hanwant Singh.
+            All rights reserved.
+
         </p>
 
     </div>
@@ -1115,18 +1347,21 @@
 </footer>
 
 
-<!-- BACK TO TOP -->
+<!-- =========================
+     BACK TO TOP
+========================= -->
 
 <button id="backToTop"
         class="back-to-top"
         aria-label="Back to top">
 
-    ↑
+    <i class="fa-solid fa-arrow-up"></i>
 
 </button>
 
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 
 </body>
 
