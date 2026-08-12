@@ -12,10 +12,8 @@
         Admin Login | Hanwant Portfolio
     </title>
 
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/admin.css') }}">
-
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -33,9 +31,7 @@
 
 
         <div class="admin-logo">
-
             Hanwant<span>.</span>
-
         </div>
 
 
@@ -45,9 +41,7 @@
 
 
         <p class="login-description">
-
             Sign in to manage portfolio messages.
-
         </p>
 
 
@@ -58,9 +52,7 @@
                 {% for message in messages %}
 
                     <div class="admin-flash">
-
                         {{ message }}
-
                     </div>
 
                 {% endfor %}
@@ -76,7 +68,7 @@
             class="admin-form">
 
 
-            <!-- CSRF TOKEN -->
+            <!-- CSRF PROTECTION -->
 
             <input
                 type="hidden"
@@ -138,6 +130,7 @@
 
             </button>
 
+
         </form>
 
 
@@ -150,7 +143,9 @@
 
         </a>
 
+
     </div>
+
 
 </div>
 

@@ -12,10 +12,8 @@
         Admin Dashboard | Hanwant Portfolio
     </title>
 
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/admin.css') }}">
-
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -34,9 +32,7 @@
 
 
     <div class="admin-logo">
-
         Hanwant<span>.</span>
-
     </div>
 
 
@@ -53,8 +49,6 @@
 
         </a>
 
-
-        <!-- LOGOUT FORM -->
 
         <form
             action="{{ url_for('admin_logout') }}"
@@ -83,6 +77,7 @@
 
     </div>
 
+
 </nav>
 
 
@@ -109,10 +104,7 @@
 
 
             <p>
-
-                Messages submitted through your
-                portfolio contact form.
-
+                Messages submitted through your portfolio contact form.
             </p>
 
         </div>
@@ -130,10 +122,11 @@
 
         </div>
 
+
     </div>
 
 
-    <!-- FLASH MESSAGES -->
+    <!-- FLASH -->
 
     {% with flash_messages = get_flashed_messages() %}
 
@@ -142,9 +135,7 @@
             {% for flash_message in flash_messages %}
 
                 <div class="admin-flash">
-
                     {{ flash_message }}
-
                 </div>
 
             {% endfor %}
@@ -154,9 +145,7 @@
     {% endwith %}
 
 
-    <!-- =========================
-         MESSAGES
-    ========================= -->
+    <!-- MESSAGES -->
 
     <div class="messages-container">
 
@@ -191,8 +180,6 @@
                         </div>
 
 
-                        <!-- DELETE FORM -->
-
                         <form
                             action="{{ url_for('delete_message', message_id=message['id']) }}"
                             method="POST"
@@ -215,6 +202,7 @@
 
                             </button>
 
+
                         </form>
 
 
@@ -231,9 +219,7 @@
                             </span>
 
                             <strong>
-
                                 {{ message["name"] }}
-
                             </strong>
 
                         </div>
@@ -259,15 +245,16 @@
 
                     <div class="message-body">
 
+
                         <span>
                             Message
                         </span>
 
+
                         <p>
-
                             {{ message["message"] }}
-
                         </p>
+
 
                     </div>
 
@@ -300,6 +287,7 @@
 
             <div class="empty-messages">
 
+
                 <i class="fa-solid fa-inbox"></i>
 
 
@@ -309,11 +297,9 @@
 
 
                 <p>
-
-                    Messages submitted through your
-                    portfolio will appear here.
-
+                    Messages submitted through your portfolio will appear here.
                 </p>
+
 
             </div>
 
